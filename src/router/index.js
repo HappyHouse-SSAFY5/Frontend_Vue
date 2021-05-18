@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import Home from '@/views/Home.vue';
 import About from '@/views/About.vue';
 import Apt from '@/views/Apt.vue';
+import Qna from '@/views/Qna.vue';
 
 Vue.use(VueRouter);
 
@@ -26,6 +27,24 @@ const routes = [
     path: '/vuetest/about',
     name: 'About',
     component: About,
+  },
+  {
+    path: '/qna',
+    name: 'Qna',
+    component: Qna,
+    redirect: '/qna/list',
+    children: [
+      {
+        path: 'list',
+          name: 'qna-list',
+          component: () => import('@/views/qna/list.vue'),
+        },
+        {
+          path: 'regist',
+          name: 'qna-regist',
+          component: () => import('@/views/qna/register.vue'),
+        },
+    ],
   },
 ];
 
