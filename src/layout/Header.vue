@@ -7,6 +7,9 @@
     <b-breadcrumb-item href="/vuetest/apt"
       ><router-link to="/vuetest/apt">아파트정보</router-link></b-breadcrumb-item
     >
+      <b-breadcrumb-item href="/qna"
+      ><router-link to="/qna">QNA</router-link></b-breadcrumb-item
+    >
     <b-breadcrumb-item href="#about"
       ><router-link to="/vuetest/about">About</router-link></b-breadcrumb-item
     >
