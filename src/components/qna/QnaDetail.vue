@@ -28,16 +28,42 @@
         <b-alert show variant="info">글 내용 : {{ qna.content }}</b-alert>
       </b-col>
     </b-row>
+    <b-row>
+      <b-col>
+        <b-button variant="outline-warning" router-link :to="`/qna/modify/${qna.id}`"
+          >수정</b-button
+        >
+        <b-button variant="outline-danger" @click="deleteQna">삭제</b-button>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
 <script>
+import http from '@/util/http-common';
+
 import { mapState } from 'vuex';
 
 export default {
   name: 'QnaDetail',
   computed: {
     ...mapState(['qna']),
+  },
+  methods: {
+    deleteQna() {
+      http
+        .delete(`http://localhost:8080/happyhouse/qna/delete/${this.qna.id}`, {
+          id: this.qna.id,
+        })
+        .then(() => {
+          alert('삭제가 완료되었습니다.');
+          // delete - 자동 새로고침하게 하기
+          this.moveList(); 
+        });
+    },
+    moveList() {
+      this.$router.push('/qna');
+    },
   },
 };
 </script>
