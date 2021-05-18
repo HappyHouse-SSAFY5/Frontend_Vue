@@ -8,7 +8,10 @@
     <Main />
   </b-container>
 </template>
-
+<!-- todo 
+ nav바 만들기
+header 만들기
+ -->
 <script>
 // @ is an alias to /src
 import Main from '@/components/Main.vue';
