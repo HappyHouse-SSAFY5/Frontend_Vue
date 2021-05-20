@@ -64,8 +64,6 @@ export default {
   },
   methods: {
     addQna() {
-      console.log('addQna call');
-
       http
         .post('/qna/registration', {
           title: this.title,
