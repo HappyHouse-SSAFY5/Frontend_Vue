@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+// import { mapState } from 'vuex';
 import QnaListItem from '@/components/qna/QnaListItem.vue';
 import http from '@/util/http-common';
 
@@ -24,14 +24,15 @@ export default {
   components: {
     QnaListItem,
   },
-  computed: {
-    ...mapState(['qnas']),
-  },
+  // computed: {
+  //   ...mapState(['qnas']),
+  // },
   created() {
     http
       .get('/qna/list')
       .then(({ data }) => {
         this.qnas = data;
+        console.log(data);
       })
       .catch(() => {
         alert('에러가 발생했습니다.');

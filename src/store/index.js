@@ -64,19 +64,19 @@ export default new Vuex.Store({
     selectApt({ commit }, apt) {
       commit('SELECT_APT', apt);
     },
-    getQnaList({ commit }, title) {
-      console.log(title);
-      axios
-        .get(`/qna/list?key=title&word=${title}`) 
-        .then((response) => {
-          // console.log(response.data.response.body.items.item);
-          console.log(response);
-          commit('GET_QNA_LIST', response.data.response.body.items.item);
-        })
-        .catch((error) => {
-          console.dir(error);
-        });
-    },
+    // getQnaList({ commit }, title) {
+    //   console.log(title);
+    //   axios
+    //     .get(`/qna/list?key=title&word=${title}`) 
+    //     .then((response) => {
+    //       // console.log(response.data.response.body.items.item);
+    //       console.log(response);
+    //       commit('GET_QNA_LIST', response.data.response.body.items.item);
+    //     })
+    //     .catch((error) => {
+    //       console.dir(error);
+    //     });
+    // },
     selectQna({ commit }, qna) {
       commit('SELECT_QNA', qna);
     },
