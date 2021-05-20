@@ -36,14 +36,19 @@ const routes = [
     children: [
       {
         path: 'list',
-          name: 'qna-list',
-          component: () => import('@/views/qna/list.vue'),
-        },
-        {
-          path: 'regist',
-          name: 'qna-regist',
-          component: () => import('@/views/qna/register.vue'),
-        },
+        name: 'qna-list',
+        component: () => import('@/views/qna/list.vue'),
+      },
+      {
+        path: 'regist',
+        name: 'qna-regist',
+        component: () => import('@/views/qna/register.vue'),
+      },
+      {
+        path: 'modify/:id',
+        name: 'qna-modify',
+        component: () => import('@/views/qna/modify.vue'),
+      },
     ],
   },
 ];
