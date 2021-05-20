@@ -64,8 +64,6 @@ export default {
   },
   methods: {
     addQna() {
-      console.log('addQna call');
-
       http
         .post('/qna/registration', {
           title: this.title,
@@ -83,10 +81,10 @@ export default {
           alert('등록 처리시 에러가 발생했습니다.');
         });
 
-      const qnaItem = {
-        title: this.title,
-        content: this.content,
-      };
+      // const qnaItem = {
+      //   title: this.title,
+      //   content: this.content,
+      // };
       // if(this.qnaTitle)
       //   this.$store.dispatch('addQna', qnaItem);
       // //  this.$store.commit('ADD_TODO', todoItem);

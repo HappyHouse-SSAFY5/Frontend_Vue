@@ -33,9 +33,9 @@ export default new Vuex.Store({
       // vue cli enviroment variables 검색
       //.env.local file 생성.
       // 반드시 VUE_APP으로 시작해야 한다.
-      const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
-      // const SERVICE_KEY =
-      //   '9Xo0vlglWcOBGUDxH8PPbuKnlBwbWU6aO7%2Bk3FV4baF9GXok1yxIEF%2BIwr2%2B%2F%2F4oVLT8bekKU%2Bk9ztkJO0wsBw%3D%3D';
+      // const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
+      const SERVICE_KEY =
+        'WwGVICRXMrx5p0RsEfAnrfXd%2BQwJof2ID0Pyh%2BFUVEk4hUOgu0YuokHu%2FxdPqN4raBdp5npL73G%2BQSoXCZy8%2BA%3D%3D';
 
       const SERVICE_URL =
         'http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev';
@@ -52,6 +52,8 @@ export default new Vuex.Store({
           params,
         })
         .then((response) => {
+          console.log("hello");
+          console.log(response);
           // console.log(response.data.response.body.items.item);
           commit('GET_APT_LIST', response.data.response.body.items.item);
         })
@@ -63,28 +65,12 @@ export default new Vuex.Store({
       commit('SELECT_APT', apt);
     },
     getQnaList({ commit }, title) {
-      // vue cli enviroment variables 검색
-      //.env.local file 생성.
-      // 반드시 VUE_APP으로 시작해야 한다.
-      const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
-      // const SERVICE_KEY =
-      //   '9Xo0vlglWcOBGUDxH8PPbuKnlBwbWU6aO7%2Bk3FV4baF9GXok1yxIEF%2BIwr2%2B%2F%2F4oVLT8bekKU%2Bk9ztkJO0wsBw%3D%3D';
-
-      const SERVICE_URL =
-        'http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev';
-
-      const params = {
-        LAWD_CD: title,
-        serviceKey: decodeURIComponent(SERVICE_KEY),
-      };
-
-      // npm install --save axios
+      console.log(title);
       axios
-        .get(SERVICE_URL, {
-          params,
-        })
+        .get(`/qna/list?key=title&word=${title}`) 
         .then((response) => {
           // console.log(response.data.response.body.items.item);
+          console.log(response);
           commit('GET_QNA_LIST', response.data.response.body.items.item);
         })
         .catch((error) => {
