@@ -1,34 +1,64 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
+// import { LayoutPlugin } from 'bootstrap-vue';
+import loginAPI from '../components/login/js/loginAPI.js';
 // import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
+
+let handleLoginResponse = (store, loginResponse) => {
+  if (loginResponse === 'noAuth') {
+    store.commit('ERROR_STATE',"잘못된 정보입니다.");
+    store.commit('IS_AUTH', false);
+    return;
+  }
+  store.commit('USERID',loginResponse.userid);
+  store.commit('USERNAME',loginResponse.username);
+  store.commit('IS_AUTH', true);
+}
 
 export default new Vuex.Store({
   state: {
     apts: [],
     apt: Object,
-    qnas: [],
-    qna: Object,
+    userid: '',
+    username: '',
+    errorState: '',
+    isAuth: false,
+  },
+  getters: {
+    getUserid: state => state.userid,
+    getUsername: state => state.username,
+    getErrorState: state => state.errorState,
+    getIsAuth: state => state.isAuth,
   },
   mutations: {
     GET_APT_LIST(state, apts) {
-      // console.log(state, apts);
       state.apts = apts;
     },
     SELECT_APT(state, apt) {
       state.apt = apt;
     },
-    GET_QNA_LIST(state, qnas) {
-      // console.log(state, apts);
-      state.qnas = qnas;
+    USERID(state, userid) {
+      state.userid = userid
     },
-    SELECT_QNA(state, qna) {
-      state.qna = qna;
+    USERNAME(state, username) {
+      state.username = username
     },
+    ERROR_STATE(state, errorState) {
+      state.errorState = errorState
+    },
+    IS_AUTH(state, isAuth) {
+      state.isAuth = isAuth
+    }
   },
   actions: {
+    async login(store, { userid, pwd }) {
+      let loginResponse = await loginAPI.login(userid, pwd);
+      handleLoginResponse(store, loginResponse);
+      return store.getters.getIsAuth;
+    },
     getAptList({ commit }, dongCode) {
       // vue cli enviroment variables 검색
       //.env.local file 생성.
@@ -52,9 +82,7 @@ export default new Vuex.Store({
           params,
         })
         .then((response) => {
-          console.log("hello");
           console.log(response);
-          // console.log(response.data.response.body.items.item);
           commit('GET_APT_LIST', response.data.response.body.items.item);
         })
         .catch((error) => {
@@ -64,23 +92,7 @@ export default new Vuex.Store({
     selectApt({ commit }, apt) {
       commit('SELECT_APT', apt);
     },
-    // getQnaList({ commit }, title) {
-    //   console.log(title);
-    //   axios
-    //     .get(`/qna/list?key=title&word=${title}`) 
-    //     .then((response) => {
-    //       // console.log(response.data.response.body.items.item);
-    //       console.log(response);
-    //       commit('GET_QNA_LIST', response.data.response.body.items.item);
-    //     })
-    //     .catch((error) => {
-    //       console.dir(error);
-    //     });
-    // },
-    selectQna({ commit }, qna) {
-      commit('SELECT_QNA', qna);
-    },
   },
   modules: {},
-  // plugins: [createPersistedState()],
+  // plugins: [authState],
 });
