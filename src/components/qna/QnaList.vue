@@ -33,7 +33,6 @@ export default {
       .then(({ data }) => {
         this.qnas = data;
         console.log(data);
-        console.log(this.qnas);
       })
       .catch(() => {
         alert('에러가 발생했습니다.');
