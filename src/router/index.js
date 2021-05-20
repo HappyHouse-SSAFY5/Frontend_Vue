@@ -4,6 +4,8 @@ import Home from '@/views/Home.vue';
 import About from '@/views/About.vue';
 import Apt from '@/views/Apt.vue';
 import Qna from '@/views/Qna.vue';
+import Login from '@/views/Login.vue';
+import { LayoutPlugin } from 'bootstrap-vue';
 
 Vue.use(VueRouter);
 
@@ -27,6 +29,11 @@ const routes = [
     path: '/vuetest/about',
     name: 'About',
     component: About,
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login,
   },
   {
     path: '/qna',
