@@ -5,7 +5,7 @@ import About from '@/views/About.vue';
 import Apt from '@/views/Apt.vue';
 import Qna from '@/views/Qna.vue';
 import Login from '@/views/Login.vue';
-import { LayoutPlugin } from 'bootstrap-vue';
+// import { LayoutPlugin } from 'bootstrap-vue';
 
 Vue.use(VueRouter);
 
