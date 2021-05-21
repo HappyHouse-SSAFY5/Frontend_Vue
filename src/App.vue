@@ -1,27 +1,19 @@
 <template>
   <div id="app">
-    <!-- 로그인 정보를 담고 있다면 -->
-    <!-- <v-if> -->
     <Header />
-    <!-- <v-else> -->
-    <NotLoginHeader />
-    <!-- 2. 보여주기 -->
     <router-view />
     <Footer />
   </div>
 </template>
 
 <script>
-//1. 사용할 컴포넌트 불러오기.
 import Header from '@/components/common/Header.vue';
-import NotLoginHeader from '@/components/common/NotLoginHeader.vue';
 import Footer from '@/components/common/Footer.vue';
 
 export default {
   name: 'App',
   components: {
     Header,
-    NotLoginHeader,
     Footer,
   },
   data() {
