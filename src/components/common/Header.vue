@@ -38,7 +38,7 @@
             <v-icon>mdi-heart</v-icon>
           </v-btn>
           <v-btn>
-            <span>Sign up</span>
+            <router-link to="/signup">Sign up</router-link>
             <v-icon>mdi-heart</v-icon>
           </v-btn>
         </div>
