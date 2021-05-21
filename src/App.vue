@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <!-- 로그인 정보를 담고 있다면 -->
+    <!-- <v-if> -->
     <Header />
     <router-view />
     <Footer />

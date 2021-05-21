@@ -4,6 +4,7 @@ import Home from '@/views/Home.vue';
 import About from '@/views/About.vue';
 import Apt from '@/views/Apt.vue';
 import Qna from '@/views/Qna.vue';
+import Signup from '@/views/Signup.vue';
 import Login from '@/views/Login.vue';
 // import { LayoutPlugin } from 'bootstrap-vue';
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/vuetest/about',
     name: 'About',
     component: About,
+  },
+  {
+    path: '/signup',
+    name: 'Signup',
+    component: Signup,
   },
   {
     path: '/login',
