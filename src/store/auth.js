@@ -45,6 +45,10 @@ const actions = {
         handleLoginResponse(store, loginResponse);
         return store.getters.getIsAuth;
     },
+    async logout(store) {
+        store.commit('IS_AUTH', false);
+        return "You've logged out Successfully."
+    }
 }
 
 export default {

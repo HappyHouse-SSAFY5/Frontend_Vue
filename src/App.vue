@@ -7,7 +7,6 @@
 </template>
 
 <script>
-//1. 사용할 컴포넌트 불러오기.
 import Header from '@/components/common/Header.vue';
 import Footer from '@/components/common/Footer.vue';
 

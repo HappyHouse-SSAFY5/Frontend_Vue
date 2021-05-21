@@ -8,7 +8,6 @@
           </router-link>
         </div>
         <div class="col-sm-2"></div>
-       
         <!-- 로그인 했을 때 -->
         <div class="col-sm-8" v-if="isAuth">
           <v-btn>
@@ -24,7 +23,7 @@
             <v-icon>mdi-heart</v-icon>
           </v-btn>
           <v-btn>
-            <span>logout</span>
+            <span @click="clicklogout">logout</span>
             <v-icon>mdi-heart</v-icon>
           </v-btn>
           <v-btn>
@@ -49,14 +48,26 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 export default {
-  data: () => ({ value: 1 }),
-  computed:{
-      ...mapGetters({
-        isAuth: 'getIsAuth'
-      })
+  data: () => ({ 
+    value: 1 
+  }),
+  methods:{
+    ...mapActions(['logout']),
+    async clicklogout(){
+      try {
+          await this.logout();
+      } catch (error) {
+          console.log(error);
+      }
     }
+  },
+  computed:{
+    ...mapGetters({
+      isAuth: 'getIsAuth'
+    })
+  }
 };
 </script>
 
