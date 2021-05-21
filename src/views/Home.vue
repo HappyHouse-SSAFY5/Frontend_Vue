@@ -1,9 +1,6 @@
 <template>
   <b-container class="bv-example-row">
     <b-row>
-      <b-col>
-        <img alt="Happy House" src="@/assets/happyhouse.png" />
-      </b-col>
     </b-row>
     <Main />
   </b-container>
