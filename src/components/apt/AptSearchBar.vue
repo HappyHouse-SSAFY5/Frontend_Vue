@@ -2,8 +2,8 @@
   <b-row class="mt-4 mb-4">
     <b-col class="sm-3" align="left">
       <b-form-input
-        v-model.trim="dongCode"
-        placeholder="동코드 입력...(예 : 11110)"
+        v-model.trim="dong"
+        placeholder="동 입력"
         @keypress.enter="sendKeyword"
       ></b-form-input>
     </b-col>
@@ -20,16 +20,16 @@ export default {
   name: 'SearchBar',
   data() {
     return {
-      dongCode: '',
+      dong: '',
     };
   },
   methods: {
     ...mapActions(['getAptList']),
     sendKeyword() {
       // this.$emit('send-keyword', this.dongCode);
-      if (this.dongCode) this.getAptList(this.dongCode);
+      if (this.dong) this.getAptList(this.dong);
       // this.$store.dispatch('getAptList', this.dongCode);
-      this.dongCode = '';
+      this.dong = '';
     },
   },
 };

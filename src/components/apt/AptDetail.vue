@@ -1,37 +1,33 @@
 <template>
-  <b-container v-if="apt.일련번호" class="bv-example-row">
+  <b-container v-if="apt.rnum" class="bv-example-row">
+    <google-map :apt="apt"></google-map>
     <b-row>
-      <b-col
-        ><h3>{{ apt.아파트 }}</h3></b-col
-      >
+      <b-col>
+        <h3>{{ apt.aptName }}</h3>
+      </b-col>
     </b-row>
     <b-row class="mb-2 mt-1">
       <b-col><img src="@/assets/apt.png" alt=""/></b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="secondary">일련번호 : {{ apt.일련번호 }}</b-alert>
+        <b-alert show variant="primary">아파트 이름 : {{ apt.aptName }}</b-alert>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="primary">아파트 이름 : {{ apt.아파트 }}</b-alert>
+        <b-alert show variant="info">법정동 : {{ apt.dong }}</b-alert>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="info">법정동 : {{ apt.법정동 }}</b-alert>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="warning">층수 : {{ apt.층 }}층</b-alert>
+        <b-alert show variant="warning">층수 : {{ apt.floor }}층</b-alert>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
         <b-alert show variant="danger"
-          >거래금액 : {{ (apt.거래금액.replace(',', '') * 10000) | price }}원</b-alert
+          >거래금액 : {{ (apt.dealAmount.replace(',', '') * 10000) | price }}원</b-alert
         >
       </b-col>
     </b-row>
@@ -39,12 +35,23 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
+import GoogleMap from './GoogleMap.vue';
 
 export default {
   name: 'AptDetail',
+  components:{
+    GoogleMap,
+  },
+  data(){
+    return{
+      
+    }
+  },
   computed: {
-    ...mapState(['apt']),
+      ...mapGetters({
+        apt: 'getApt'
+      })
   },
   filters: {
     price(value) {
