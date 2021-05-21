@@ -2,37 +2,17 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import axios from 'axios';
 // import { LayoutPlugin } from 'bootstrap-vue';
-import loginAPI from '../components/login/js/loginAPI.js';
-// import createPersistedState from 'vuex-persistedstate';
+import createPersistedState from 'vuex-persistedstate';
+import Auth from './auth.js';
 
 Vue.use(Vuex);
-
-let handleLoginResponse = (store, loginResponse) => {
-  if (loginResponse === 'noAuth') {
-    store.commit('ERROR_STATE',"잘못된 정보입니다.");
-    store.commit('IS_AUTH', false);
-    return;
-  }
-  store.commit('USERID',loginResponse.userid);
-  store.commit('USERNAME',loginResponse.username);
-  store.commit('IS_AUTH', true);
-}
 
 export default new Vuex.Store({
   state: {
     apts: [],
     apt: Object,
-    userid: '',
-    username: '',
-    errorState: '',
-    isAuth: false,
   },
-  getters: {
-    getUserid: state => state.userid,
-    getUsername: state => state.username,
-    getErrorState: state => state.errorState,
-    getIsAuth: state => state.isAuth,
-  },
+  getters: {},
   mutations: {
     GET_APT_LIST(state, apts) {
       state.apts = apts;
@@ -40,25 +20,8 @@ export default new Vuex.Store({
     SELECT_APT(state, apt) {
       state.apt = apt;
     },
-    USERID(state, userid) {
-      state.userid = userid
-    },
-    USERNAME(state, username) {
-      state.username = username
-    },
-    ERROR_STATE(state, errorState) {
-      state.errorState = errorState
-    },
-    IS_AUTH(state, isAuth) {
-      state.isAuth = isAuth
-    }
   },
   actions: {
-    async login(store, { userid, pwd }) {
-      let loginResponse = await loginAPI.login(userid, pwd);
-      handleLoginResponse(store, loginResponse);
-      return store.getters.getIsAuth;
-    },
     getAptList({ commit }, dongCode) {
       // vue cli enviroment variables 검색
       //.env.local file 생성.
@@ -93,6 +56,12 @@ export default new Vuex.Store({
       commit('SELECT_APT', apt);
     },
   },
-  modules: {},
-  // plugins: [authState],
+  modules: {
+    auth: Auth,
+  },
+  plugins: [
+    createPersistedState({
+      path:['auth']
+    })
+  ],
 });
