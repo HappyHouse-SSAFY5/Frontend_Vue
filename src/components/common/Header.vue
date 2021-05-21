@@ -1,21 +1,46 @@
 <template>
   <div id="header">
-    <router-link to="/">
-      <img src="@/assets/logo.png" class="log" />
-    </router-link>
+    <v-bottom-navigation :value="value" color="primary" horizontal>
+      <div class="row">
+        <div class="col-sm-2">
+          <router-link to="/">
+            <img src="@/assets/houselogo.png" class="logo" />
+          </router-link>
+        </div>
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+          <p class="header_title">Happy House</p>
+        </div>
+        <div class="col-sm-4">
+          <v-btn>
+            <span>login</span>
+
+            <v-icon>mdi-heart</v-icon>
+          </v-btn>
+
+          <v-btn>
+            <span>sign up</span>
+
+            <v-icon>mdi-heart</v-icon>
+          </v-btn>
+        </div>
+      </div>
+    </v-bottom-navigation>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({ value: 1 }),
+};
 </script>
 
 <style>
-.logo {
-  width: 130px;
-}
-.header {
+.header_title {
+  font-size: 30px;
   text-align: center;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
+}
+.logo {
+  width: 100px;
 }
 </style>
