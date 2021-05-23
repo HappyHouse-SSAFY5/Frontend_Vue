@@ -3,27 +3,28 @@ const state = {
   apts: [],
   apt: Object,
   drawer: false,
+  searchedDong : "",
 }
 const getters = {
   getApt: state => state.apt,
   getApts: state => state.apts,
   getDrawer: state => state.drawer,
+  getSearchedDong: state => state.searchedDong,
 }
 
 const mutations = {
   GET_APT_LIST(state, apts) {
-      state.apts = apts;
-      console.log("on mutation");
-      console.log(state.apts);
+    state.apts = apts;
   },
   SELECT_APT(state, apt) {
-      state.apt = apt;
+    state.apt = apt;
   },
   TOGGLE_DRAWER(state) {
-    console.log(state.drawer);
     state.drawer = !state.drawer;
-    console.log(state.drawer);
   },
+  SET_SEARCHED_DONG(state, dong) {
+    state.searchedDong = dong;
+  }
 }
 
 const actions = {
@@ -45,6 +46,7 @@ const actions = {
     // };
 
     // npm install --save axios
+    
     axios
       .post("http://localhost:8080/happyhouse/search/dong", {
         key: "dong",
@@ -53,6 +55,7 @@ const actions = {
       .then((response) => {
         commit('GET_APT_LIST', response.data);
         commit('SELECT_APT', {});
+        commit('SET_SEARCHED_DONG', dong);
       })
       .catch((error) => {
         console.dir(error);

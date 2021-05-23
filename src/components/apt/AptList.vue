@@ -1,12 +1,34 @@
 <template>
-  <v-app id="inspire" v-if="apts && apts.length != 0" class="bv-example-row mt-3">
-    <apt-list-item v-for="(apt, index) in apts" :key="index" :apt="apt" />
-  </v-app>
-  <v-app id="inspire" v-else class="bv-example-row mt-3">
-    <b-row>
-      <b-col><b-alert show>아파트 목록이 없습니다.</b-alert></b-col>
-    </b-row>
-  </v-app>
+  <v-container v-if="apts && apts.length != 0" class="fill-height overflow-y-auto">
+    <v-row
+      align="center"
+      justify="center"
+    >
+      <v-card
+        class="mx-auto"
+        max-width="1200"
+      >
+        <v-container fluid>
+          <v-row dense>
+            <v-col
+              v-for="(apt, index) in apts"
+              :key="index"
+              :cols=4
+            >
+              <apt-list-item :apt="apt" />
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card>
+    </v-row>
+  </v-container>
+  <v-container id="inspire" v-else>
+    <v-chip
+        class="ma-2"
+      >
+        매매 기록이 존재하지 않습니다.
+      </v-chip>
+  </v-container>
 </template>
 
 <script>
@@ -19,9 +41,9 @@ export default {
     AptListItem,
   },
   computed: {
-      ...mapGetters({
-        apts: 'getApts'
-      })
+    ...mapGetters({
+      apts: 'getApts'
+    })
   },
 };
 </script>

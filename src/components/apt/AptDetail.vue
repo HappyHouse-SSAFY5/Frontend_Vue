@@ -1,5 +1,18 @@
 <template>
-  <b-container v-if="apt.rnum" class="bv-example-row">
+    <v-navigation-drawer
+      v-if="apt.rnum"
+      width="1000"
+      v-model="drawer"
+      absolute
+      temporary
+    >
+      <v-btn
+        color="deep-purple lighten-2"
+        dark
+        @click="toggleByBtnInside"
+      >
+        Close
+      </v-btn>
     <google-map :apt="apt"></google-map>
     <b-row>
       <b-col>
@@ -31,11 +44,11 @@
         >
       </b-col>
     </b-row>
-  </b-container>
+    </v-navigation-drawer>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import GoogleMap from './GoogleMap.vue';
 
 export default {
@@ -44,13 +57,12 @@ export default {
     GoogleMap,
   },
   data(){
-    return{
-      
-    }
+    return{}
   },
   computed: {
       ...mapGetters({
-        apt: 'getApt'
+        apt: 'getApt',
+        drawer:'getDrawer'
       })
   },
   filters: {
@@ -58,6 +70,12 @@ export default {
       if (!value) return value;
       return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
+  },
+  methods: {
+    ...mapActions(['toggleDrawerByBtn']),
+    toggleByBtnInside(){
+      this.toggleDrawerByBtn();
+    }
   },
 };
 </script>
