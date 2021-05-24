@@ -2,7 +2,7 @@
   <GmapMap
   :center="{lat: parseFloat(apt.lat), lng: parseFloat(apt.lng)}"
   :zoom="15"
-  style="width: 500px; height: 300px">
+  style="width: 900px; height: 400px">
     <GmapMarker
       :position="{lat: parseFloat(apt.lat), lng: parseFloat(apt.lng)}"
       :clickable="true"
