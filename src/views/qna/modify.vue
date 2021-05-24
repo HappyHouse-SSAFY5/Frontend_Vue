@@ -1,6 +1,6 @@
 <template>
   <div>
-      <qna-modify />
+    <qna-modify />
   </div>
 </template>
 
