@@ -80,9 +80,12 @@ export default {
     apt: Object,
   },
   methods: {
-    ...mapActions(['selectApt', 'toggleDrawer']),
-    chooseApt() {
-      this.selectApt(this.apt);
+    ...mapActions(['selectApt', 'toggleDrawer', 'getNearInfo']),
+    async chooseApt() {
+      let selected = await this.selectApt(this.apt);
+      if(selected){
+        await this.getNearInfo(selected);
+      }
       this.toggleDrawer();
     },
     colorChange(flag) {

@@ -61,8 +61,9 @@ const actions = {
         console.dir(error);
       });
   },
-  selectApt({ commit }, apt) {
+  async selectApt({ commit }, apt) {
     commit('SELECT_APT', apt);
+    return apt;
   },
   toggleDrawer({ commit }) {
     commit('TOGGLE_DRAWER');

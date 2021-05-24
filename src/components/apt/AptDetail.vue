@@ -1,42 +1,52 @@
 <template>
     <v-navigation-drawer
       v-if="apt.rnum"
-      width="925"
+      width="950"
       v-model="drawer"
       absolute
       temporary
     >
-    <div class="close-btn">
-      <v-btn
-        color="deep-purple lighten-2"
-        dark
-        sticky
-        @click="toggleByBtnInside"
-      >
-        Close
-      </v-btn>
-    </div>
     
     <v-container>
-      <v-row no-gutters>
+      <v-row>
         <!-- apt name -->
-        <v-col cols="12" align="left">
-          <h2>{{ apt.aptName }}</h2>
+        <v-col cols="10" align="left">
+          <v-alert
+            border="bottom"
+            color="indigo darken-4"
+            dark
+            style="margin:0px;"
+          >
+            <h4>{{ apt.aptName }}</h4>
+          </v-alert>
         </v-col>
-        
-        <v-col cols="12">
-            <google-map :apt="apt" class="inner-card"></google-map>
+        <v-col cols="2">
+            <v-btn
+              height="100%"
+              width="100%"
+              class="close-btn"
+              color="indigo"
+              dark
+              @click="toggleByBtnInside"
+            >
+              <v-icon left>mdi-close-circle-outline</v-icon>
+              Close
+            </v-btn>
         </v-col>
         
         <!-- apt details -->
-        <detail-list :apt="apt" />
+        <detail-list :apt="apt"/>
         
-        <!-- Buffer -->
-        <v-col cols="1"></v-col>
+        <v-col cols="9">
+            <google-map :apt="apt"></google-map>
+        </v-col>
       
         <!-- map and more info -->
-        <v-col cols="5" class="inner-card">
-          <near-info />
+        <v-col cols="7" class="padding-top-16">
+          <near-store :apt="apt" />
+        </v-col>
+        <v-col cols="5" class="padding-top-16">
+          <near-air-condition />
         </v-col>
       </v-row>
     </v-container>
@@ -47,14 +57,16 @@
 import { mapActions, mapGetters } from 'vuex';
 import GoogleMap from './GoogleMap.vue';
 import DetailList from './AptDetailList.vue';
-import NearInfo from './NearInfo.vue';
+import NearStore from './NearStore.vue';
+import NearAirCondition from './AirCondition.vue';
 
 export default {
   name: 'AptDetail',
   components:{
     GoogleMap,
     DetailList,
-    NearInfo,
+    NearStore,
+    NearAirCondition,
   },
   data(){
     return{}
@@ -65,17 +77,12 @@ export default {
         drawer:'getDrawer'
       })
   },
-  filters: {
-    price(value) {
-      if (!value) return value;
-      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    },
-  },
   methods: {
-    ...mapActions(['toggleDrawerByBtn']),
+    ...mapActions(['toggleDrawerByBtn', 'drawMarker']),
     toggleByBtnInside(){
       this.toggleDrawerByBtn();
-    }
+      this.drawMarker(null);
+    },
   },
 };
 </script>
@@ -83,9 +90,9 @@ export default {
 <style>
 .close-btn{
   float: right;
-  margin: 10px;
-}
-.inner-card{
   margin: auto;
+}
+.padding-top-16{
+  padding-top: 16px;
 }
 </style>
