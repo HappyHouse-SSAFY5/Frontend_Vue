@@ -1,16 +1,67 @@
 <template>
-  <b-row
-    class="m-2"
+  <v-card
+    :loading="loading"
+    class="mx-auto my-12"
+    max-width="374"
     @click="chooseApt"
-    @mouseover="colorChange(true)"
-    @mouseout="colorChange(false)"
-    :class="{ 'mouse-over-bgcolor': isColor }"
   >
-    <b-col cols="2" class="text-center">
-      <img src="@/assets/apt.png" class="img-list" alt="" />
-    </b-col>
-    <b-col cols="10"> [{{ this.apt.일련번호 }}] {{ this.apt.아파트 }}</b-col>
-  </b-row>
+    <v-card-title>{{ this.apt.aptName }}</v-card-title>
+    <v-card-text>
+        <v-row
+          align="center"
+          class="mx-0"
+        >
+          <v-rating
+            :value="4.5"
+            color="amber"
+            dense
+            half-increments
+            readonly
+            size="14"
+          ></v-rating>
+  
+          <div class="grey--text ml-4">
+            4.5 (413)
+          </div>
+        </v-row>
+  
+        <div class="my-4 subtitle-1">
+          $ • {{this.apt.dealAmount}}
+        </div>
+  
+        <div>Small plates, salads & sandwiches - an intimate setting with 12 indoor seats plus patio seating.</div>
+      </v-card-text>
+  
+      <v-divider class="mx-4"></v-divider>
+  
+      <v-card-title>Tonight's availability</v-card-title>
+  
+      <v-card-text>
+        <v-chip-group
+          v-model="selection"
+          active-class="deep-purple accent-4 white--text"
+          column
+        >
+          <v-chip>5:30PM</v-chip>
+  
+          <v-chip>7:30PM</v-chip>
+  
+          <v-chip>8:00PM</v-chip>
+  
+          <v-chip>9:00PM</v-chip>
+        </v-chip-group>
+      </v-card-text>
+  
+      <v-card-actions>
+        <v-btn
+          color="deep-purple lighten-2"
+          text
+          @click="reserve"
+        >
+          Reserve
+        </v-btn>
+      </v-card-actions>
+  </v-card>
 </template>
 
 <script>
@@ -21,22 +72,25 @@ export default {
   data() {
     return {
       isColor: false,
+      loading: false,
+      selection: 1,
     };
   },
   props: {
     apt: Object,
   },
   methods: {
-    // chooseApt() {
-    //   // this.$emit('select-apt', this.apt);
-    //   this.$store.dispatch('selectApt', this.apt);
-    // },
-    ...mapActions(['selectApt']),
+    ...mapActions(['selectApt', 'toggleDrawer']),
     chooseApt() {
       this.selectApt(this.apt);
+      this.toggleDrawer();
     },
     colorChange(flag) {
       this.isColor = flag;
+    },
+    reserve () {
+      this.loading = true
+      setTimeout(() => (this.loading = false), 2000)
     },
   },
 };
