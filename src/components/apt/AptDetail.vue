@@ -20,17 +20,35 @@
             <h4>{{ apt.aptName }}</h4>
           </v-alert>
         </v-col>
-        <v-col cols="2">
+        <v-col 
+          cols="1" 
+          style="display: flex; align-items: center;"
+        >
+          <v-btn
+            class="mx-2"
+            fab
+            dark
+            small
+            color="indigo darken-3"
+            style="margin:auto;"
+            @click="pick"
+          >
+            <v-icon dark>
+              mdi-heart
+            </v-icon>
+          </v-btn>
+        </v-col>
+        <v-col cols="1" style="display: flex; align-items: center;">
             <v-btn
-              height="100%"
-              width="100%"
-              class="close-btn"
-              color="indigo"
+              class="mx-2"
+              fab
               dark
+              small
+              color="indigo darken-3"
+              style="margin:auto;"
               @click="toggleByBtnInside"
             >
-              <v-icon left>mdi-close-circle-outline</v-icon>
-              Close
+              <v-icon>mdi-close-thick</v-icon>
             </v-btn>
         </v-col>
         
@@ -54,6 +72,7 @@
 </template>
 
 <script>
+import http from '@/util/http-common';
 import { mapActions, mapGetters } from 'vuex';
 import GoogleMap from './GoogleMap.vue';
 import DetailList from './AptDetailList.vue';
@@ -74,7 +93,8 @@ export default {
   computed: {
       ...mapGetters({
         apt: 'getApt',
-        drawer:'getDrawer'
+        drawer:'getDrawer',
+        userid: 'getUserid'
       })
   },
   methods: {
@@ -83,6 +103,19 @@ export default {
       this.toggleDrawerByBtn();
       this.drawMarker(null);
     },
+    pick(){
+      http
+        .post('/pick',{
+          user_id: this.userid,
+          housedeal_id: this.apt.housedeal_no
+        })
+        .then(data =>{
+          console.log(data);
+        })
+        .catch(error=>{
+          console.log(error);
+        });
+    }
   },
 };
 </script>

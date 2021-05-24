@@ -1,45 +1,42 @@
 <template>
   <div id="header">
-    <v-bottom-navigation :value="value" color="primary" horizontal>
+    <v-bottom-navigation :value="value" color="primary" horizontal height="100px">
       <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-5">
           <router-link to="/">
-            <img src="@/assets/houselogo.png" class="logo" />
+            <img src="@/assets/hphlogo.png" class="logo" />
           </router-link>
         </div>
-        <div class="col-sm-2"></div>
         <!-- 로그인 했을 때 -->
-        <div class="col-sm-8" v-if="isAuth">
-          <v-btn>
-            <router-link to="/vuetest/apt">아파트정보</router-link>
-            <v-icon>mdi-heart</v-icon>
+        <div class="col-sm-7" v-if="isAuth" 
+          style="
+            display: flex;
+            justify-content: center;
+            height: -webkit-fill-available;
+        ">
+          <v-btn class="roboto-bold">
+            <router-link to="/vuetest/apt" class="roboto-bold">Apt Info</router-link>
           </v-btn>
           <v-btn>
-            <router-link to="/qna">QNA</router-link>
-            <v-icon>mdi-heart</v-icon>
+            <router-link to="/qna" class="roboto-bold">QNA</router-link>
           </v-btn>
           <v-btn>
-            <router-link to="/vuetest/about">About</router-link>
-            <v-icon>mdi-heart</v-icon>
+            <router-link to="/vuetest/about" class="roboto-bold">About</router-link>
           </v-btn>
           <v-btn>
-            <span @click="clicklogout">logout</span>
-            <v-icon>mdi-heart</v-icon>
+            <span @click="clicklogout" class="roboto-bold">Logout</span>
           </v-btn>
           <v-btn>
-            <span>mypage</span>
-            <v-icon>mdi-heart</v-icon>
+            <span class="roboto-bold">My page</span>
           </v-btn>
         </div>
         <!-- 로그인 안했을 때 -->
-        <div class="col-sm-8" v-else>
+        <div class="col-sm-7" v-else style="display: flex; justify-content: center; height: -webkit-fill-available;">
           <v-btn>
-            <router-link to="/login">Login</router-link>
-            <v-icon>mdi-heart</v-icon>
+            <router-link to="/login" class="roboto-bold">Log in</router-link>
           </v-btn>
           <v-btn>
-            <router-link to="/signup">Sign up</router-link>
-            <v-icon>mdi-heart</v-icon>
+            <router-link to="/signup" class="roboto-bold">Sign up</router-link>
           </v-btn>
         </div>
       </div>
@@ -77,6 +74,21 @@ export default {
   text-align: center;
 }
 .logo {
-  width: 100px;
+  width: 180px;
+  height: 150px;
+}
+.roboto-bold{
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 20px;
+  color: black;
+}
+
+.roboto-bold:hover{
+  font-family: 'Roboto';
+  font-weight: 700;
+  font-size: 20px;
+  color: black;
+  text-decoration: none;
 }
 </style>

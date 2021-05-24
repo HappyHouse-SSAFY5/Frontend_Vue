@@ -54,6 +54,7 @@ const actions = {
       })
       .then((response) => {
         commit('GET_APT_LIST', response.data);
+        console.log(response.data);
         commit('SELECT_APT', {});
         commit('SET_SEARCHED_DONG', dong);
       })

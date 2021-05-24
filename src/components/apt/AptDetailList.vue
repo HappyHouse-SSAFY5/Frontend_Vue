@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="3">
+  <v-col cols="3" >
     <v-list dense>
         <v-list-item>
             <v-list-item-icon>
@@ -71,10 +71,10 @@ export default {
         apt: Object,
     },
     filters: {
-    price(value) {
-      if (!value) return value;
-      return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        price(value) {
+        if (!value) return value;
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        },
     },
-  },
 }
 </script>

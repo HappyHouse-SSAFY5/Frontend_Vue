@@ -26,7 +26,6 @@ const mutations = {
 let handleNearStoreResponse = (commit, nearStoreResponse ) => {
   commit('NEAR_STORE', nearStoreResponse.nearStore);
   commit('AIR_CONDITION', nearStoreResponse.airCondition);
-  console.log(nearStoreResponse.airCondition);
 }
 
 const actions = {

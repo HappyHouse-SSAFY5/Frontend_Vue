@@ -29,8 +29,8 @@
       </v-col>
       <v-col cols="6">
         <v-progress-circular
-            :size="100"
-            :width="15"
+            :size="80"
+            :width="8"
             :value="airconditions.PM10"
             color="indigo accent-3"
         >
@@ -41,8 +41,8 @@
       </v-col>
       <v-col cols="6">
         <v-progress-circular
-            :size="100"
-            :width="15"
+            :size="80"
+            :width="8"
             :value="airconditions.PM25"
             color="indigo accent-1"
         >
@@ -53,8 +53,8 @@
       </v-col>
       <v-col cols="6">
         <v-progress-circular
-            :size="100"
-            :width="15"
+            :size="80"
+            :width="8"
             :value="airconditions.O3"
             color="indigo darken-1"
         >
@@ -65,8 +65,8 @@
       </v-col>
       <v-col cols="6">
         <v-progress-circular
-            :size="100"
-            :width="15"
+            :size="80"
+            :width="8"
             :value="airconditions.CO "
             color="indigo darken-2"
         >
