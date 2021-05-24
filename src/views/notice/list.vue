@@ -1,19 +1,18 @@
 <template>
   <div>
     <b-row>
-      <qna-list />
+      <notice-list />
     </b-row>
   </div>
 </template>
 
 <script>
-import QnaList from '@/components/qna/QnaList.vue';
-
+import NoticeList from '@/components/notice/NoticeList.vue';
 
 export default {
-  name: 'QnaListAndDetail',
+  name: 'NoticeListAndDetail',
   components: {
-    QnaList,
+    NoticeList,
   },
 };
 </script>
