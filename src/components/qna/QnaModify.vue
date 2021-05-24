@@ -1,8 +1,8 @@
 <template>
   <div class="regist">
-   <h2>QNA 수정</h2>
+    <h1 class="underline">QNA 수정</h1>
     <div class="regist_form">
-      <label for="title">제목</label>
+      <label for="title">글 제목</label>
       <input type="text" id="title" name="title" v-model="title" ref="title" /><br />
       <label for="content">내용</label>
       <br />
@@ -15,8 +15,8 @@
         rows="5"
       ></textarea
       ><br />
-      <button class="btn btn-warning" @click="modifyQna">수정</button>
-      <button class="btn btn-danger" @click="deleteQna">삭제</button>
+      <button @click="modifyQna">수정</button>
+      <button @click="moveList">목록</button>
     </div>
   </div>
 </template>
@@ -33,28 +33,30 @@ export default {
     };
   },
   created() {
-    http
-      .get(`/qna/detail/${this.$route.params.id}`)
-      .then(({ data }) => {
-        console.log(data);
-        this.id = data.id;
-        this.userid = data.userid;
-        this.title = data.title;
-        this.content = data.content;
-      });
+    http.get(`http://localhost:8080/happyhouse/qna/detail/${this.$route.params.id}`).then(({data}) => {
+      console.log(data);
+      this.id = data.id;
+      this.userid = data.userid;
+      this.title = data.title;
+      this.content = data.content;
+    });
   },
   methods: {
     modifyQna() {
       console.log('updateQna call');
 
       http
-        .put(`/qna/modify`, {
+        .put(`http://localhost:8080/happyhouse/qna/modify`, {
           id: this.id,
           userid: this.userid,
           title: this.title,
           content: this.content,
         })
         .then(({ data }) => {
+ //         let msg = '수정 처리시 문제가 발생했습니다.';
+ //         if (data === 'success') {
+ //           msg = '수정이 완료되었습니다.';
+ //         }
           console.log(data);
           alert('수정이 완료되었습니다.');
           this.moveList();
@@ -62,16 +64,15 @@ export default {
         .catch(() => {
           alert('수정 처리시 에러가 발생했습니다.');
         });
-    },
-        deleteQna() {
-      http
-        .delete(`/qna/delete/${this.$route.params.id}`, {
-         id: this.$route.params.id,
-        })
-        .then(() => {
-          alert('삭제가 완료되었습니다.');
-          this.moveList();
-        });
+
+      // const qnaItem = {
+      //   title: this.title,
+      //   content: this.content,
+      // };
+      // if(this.qnaTitle)
+      //   this.$store.dispatch('addQna', qnaItem);
+      // //  this.$store.commit('ADD_TODO', todoItem);
+      // // this.$store.state.todos.push(todoItem);
     },
     moveList() {
       this.$router.push('/qna/list');
@@ -96,24 +97,26 @@ textarea,
 }
 button,
 .btn {
-  background-color: #EDE7F6;
-  color: 9FA8DA;
+  width: 8%;
+  background-color: #d0d3d0;
+  color: rgb(80, 82, 79);
   padding: 14px 20px;
   margin: 8px 0;
-  border: solid 1px #9FA8DA;
+  border: 1px solid #787878;
   border-radius: 4px;
+  font-size: large;
   cursor: pointer;
-  color: black;
 }
 .regist {
   padding: 10px;
 }
 .regist_form {
   border-radius: 5px;
-  background-color: #EDE7F6;
+  background-color: #f2f2f2;
   padding: 20px;
 }
-label {
-  font: bold;
+.underline {
+  display: inline-block;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 70%, cyan 30%);
 }
 </style>

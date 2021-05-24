@@ -14,10 +14,6 @@
             <router-link to="/vuetest/apt">아파트정보</router-link>
             <v-icon>mdi-heart</v-icon>
           </v-btn>
-           <v-btn>
-            <router-link to="/notice">공지사항</router-link>
-            <v-icon>mdi-heart</v-icon>
-          </v-btn>
           <v-btn>
             <router-link to="/qna">QNA</router-link>
             <v-icon>mdi-heart</v-icon>
@@ -31,7 +27,7 @@
             <v-icon>mdi-heart</v-icon>
           </v-btn>
           <v-btn>
-            <router-link to="/mypage">mypage</router-link>
+            <span>mypage</span>
             <v-icon>mdi-heart</v-icon>
           </v-btn>
         </div>

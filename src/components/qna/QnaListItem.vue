@@ -27,6 +27,10 @@ export default {
     qna: Object,
   },
   methods: {
+    // chooseApt() {
+    //   // this.$emit('select-apt', this.apt);
+    //   this.$store.dispatch('selectApt', this.apt);
+    // },
     ...mapActions(['selectQna']),
     chooseQna() {
       this.selectQna(this.qna);
