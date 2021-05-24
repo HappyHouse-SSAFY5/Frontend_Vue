@@ -1,16 +1,16 @@
 <template>
   <div class="card col-lg-12" align="center">
-    <h2>QNA 등록</h2>
+    <h2>공지사항 등록</h2>
     <div>
       <div class="form-group" align="left">
-        <label for="title">제목:</label>
-        <input type="text" class="form-control" id="title" name="title" v-model="title" ref="title" />
+        <label for="subject">제목:</label>
+        <input type="text" class="form-control" id="subject" name="subject" v-model="subject" ref="subject" />
       </div>
       <div class="form-group" align="left">
         <label for="content">내용:</label>
         <textarea class="form-control" rows="15" id="content" name="content" v-model="content" ref="content"></textarea>
       </div>
-      <button class="btn btn-primary" @click="addQna">등록</button>
+      <button class="btn btn-primary" @click="addNotice">등록</button>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@ import http from '@/util/http-common';
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'QnaForm',
+  name: 'NoticeForm',
    computed: {
     ...mapGetters({
       loginUserId: 'getUserid',
@@ -28,16 +28,16 @@ export default {
   },
   data() {
     return {
-      title: '',
+      subject: '',
       content: '',
     };
   },
   methods: {
-    addQna() {
+    addNotice() {
       console.log(this.loginUserId);
       http
-        .post('/qna/registration', {
-          title: this.title,
+        .post('/article/write', {
+          subject: this.subject,
           userid: this.loginUserId,
           content: this.content,
         })
@@ -51,10 +51,22 @@ export default {
         });
     },
     moveList() {
-      this.$router.push('/qna/list');
+      this.$router.push('/notice/list');
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+.card {
+  background-color: #EDE7F6;
+}
+h2 {
+  color: #9FA8DA;
+}
+.btn {
+  border: solid 1px #9FA8DA;
+  background-color: #EDE7F6;
+  color: 9FA8DA;
+}
+</style>

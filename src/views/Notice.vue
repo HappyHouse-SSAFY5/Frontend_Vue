@@ -11,7 +11,7 @@
 <script>
 
 export default {
-  name: 'Qna',
+  name: 'Notice',
   data() {
     return {};
   },
@@ -19,4 +19,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+h2 {
+  margin-top: 15px;
+  margin-bottom: 50px;
+  color: white;
+}
+</style>

@@ -3,9 +3,11 @@ import VueRouter from 'vue-router';
 import Home from '@/views/Home.vue';
 import About from '@/views/About.vue';
 import Apt from '@/views/Apt.vue';
+import Mypage from '@/views/MyPage.vue';
 import Qna from '@/views/Qna.vue';
 import Signup from '@/views/Signup.vue';
 import Login from '@/views/Login.vue';
+import Notice from '@/views/Notice.vue';
 // import { LayoutPlugin } from 'bootstrap-vue';
 
 Vue.use(VueRouter);
@@ -42,6 +44,11 @@ const routes = [
     component: Login,
   },
   {
+    path: '/mypage',
+    name: 'Mypage',
+    component: Mypage,
+  },
+  {
     path: '/qna',
     name: 'Qna',
     component: Qna,
@@ -61,6 +68,29 @@ const routes = [
         path: 'modify/:id',
         name: 'qna-modify',
         component: () => import('@/views/qna/modify.vue'),
+      },
+    ],
+  },
+  {
+    path: '/notice',
+    name: 'Notice',
+    component: Notice,
+    redirect: '/notice/list',
+    children: [
+      {
+        path: 'list',
+        name: 'notice-list',
+        component: () => import('@/views/notice/list.vue'),
+      },
+      {
+        path: 'regist',
+        name: 'notice-regist',
+        component: () => import('@/views/notice/register.vue'),
+      },
+      {
+        path: 'modify/:articleno',
+        name: 'notice-modify',
+        component: () => import('@/views/notice/modify.vue'),
       },
     ],
   },

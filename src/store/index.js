@@ -11,6 +11,10 @@ export default new Vuex.Store({
   state: {
     apts: [],
     apt: Object,
+    notices: [],
+    notice: Object,
+    qnas: [],
+    qna: Object,
   },
   getters: {},
   mutations: {
@@ -19,6 +23,21 @@ export default new Vuex.Store({
     },
     SELECT_APT(state, apt) {
       state.apt = apt;
+    },
+    GET_NOTICE_LIST(state, notices) {
+      state.notices = notices;
+      console.log(state.notices);
+    },
+    SELECT_NOTICE(state, notice) {
+      state.notice = notice;
+      console.log(state.notice);
+    },
+    GET_QNA_LIST(state, qnas) {
+      // console.log(state, apts);
+      state.qnas = qnas;
+    },
+    SELECT_QNA(state, qna) {
+      state.qna = qna;
     },
   },
   actions: {
@@ -54,6 +73,12 @@ export default new Vuex.Store({
     },
     selectApt({ commit }, apt) {
       commit('SELECT_APT', apt);
+    },
+    selectNotice({ commit }, notice) {
+      commit('SELECT_NOTICE', notice);
+    },
+    selectQna({ commit }, qna) {
+      commit('SELECT_QNA', qna);
     },
   },
   modules: {
