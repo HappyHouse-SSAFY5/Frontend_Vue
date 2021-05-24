@@ -1,50 +1,69 @@
 <template>
-  <b-container v-if="apt.일련번호" class="bv-example-row">
-    <b-row>
-      <b-col
-        ><h3>{{ apt.아파트 }}</h3></b-col
+    <v-navigation-drawer
+      v-if="apt.rnum"
+      width="925"
+      v-model="drawer"
+      absolute
+      temporary
+    >
+    <div class="close-btn">
+      <v-btn
+        color="deep-purple lighten-2"
+        dark
+        sticky
+        @click="toggleByBtnInside"
       >
-    </b-row>
-    <b-row class="mb-2 mt-1">
-      <b-col><img src="@/assets/apt.png" alt=""/></b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="secondary">일련번호 : {{ apt.일련번호 }}</b-alert>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="primary">아파트 이름 : {{ apt.아파트 }}</b-alert>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="info">법정동 : {{ apt.법정동 }}</b-alert>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="warning">층수 : {{ apt.층 }}층</b-alert>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="danger"
-          >거래금액 : {{ (apt.거래금액.replace(',', '') * 10000) | price }}원</b-alert
-        >
-      </b-col>
-    </b-row>
-  </b-container>
+        Close
+      </v-btn>
+    </div>
+    
+    <v-container>
+      <v-row no-gutters>
+        <!-- apt name -->
+        <v-col cols="12" align="left">
+          <h2>{{ apt.aptName }}</h2>
+        </v-col>
+        
+        <v-col cols="12">
+            <google-map :apt="apt" class="inner-card"></google-map>
+        </v-col>
+        
+        <!-- apt details -->
+        <detail-list :apt="apt" />
+        
+        <!-- Buffer -->
+        <v-col cols="1"></v-col>
+      
+        <!-- map and more info -->
+        <v-col cols="5" class="inner-card">
+          <near-info />
+        </v-col>
+      </v-row>
+    </v-container>
+    </v-navigation-drawer>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
+import GoogleMap from './GoogleMap.vue';
+import DetailList from './AptDetailList.vue';
+import NearInfo from './NearInfo.vue';
 
 export default {
   name: 'AptDetail',
+  components:{
+    GoogleMap,
+    DetailList,
+    NearInfo,
+  },
+  data(){
+    return{}
+  },
   computed: {
-    ...mapState(['apt']),
+      ...mapGetters({
+        apt: 'getApt',
+        drawer:'getDrawer'
+      })
   },
   filters: {
     price(value) {
@@ -52,7 +71,21 @@ export default {
       return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     },
   },
+  methods: {
+    ...mapActions(['toggleDrawerByBtn']),
+    toggleByBtnInside(){
+      this.toggleDrawerByBtn();
+    }
+  },
 };
 </script>
 
-<style></style>
+<style>
+.close-btn{
+  float: right;
+  margin: 10px;
+}
+.inner-card{
+  margin: auto;
+}
+</style>
