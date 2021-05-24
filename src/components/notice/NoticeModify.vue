@@ -1,9 +1,9 @@
 <template>
   <div class="regist">
-   <h2>QNA 수정</h2>
+    <h2>공지사항 수정</h2>
     <div class="regist_form">
-      <label for="title">제목</label>
-      <input type="text" id="title" name="title" v-model="title" ref="title" /><br />
+      <label for="subject">제목</label>
+      <input type="text" id="subject" name="subject" v-model="subject" ref="subject" /><br />
       <label for="content">내용</label>
       <br />
       <textarea
@@ -15,8 +15,8 @@
         rows="5"
       ></textarea
       ><br />
-      <button class="btn btn-warning" @click="modifyQna">수정</button>
-      <button class="btn btn-danger" @click="deleteQna">삭제</button>
+      <button class="btn btn-warning" @click="modifyNotice">수정</button>
+      <button class="btn btn-danger" @click="deleteNotice">삭제</button>
     </div>
   </div>
 </template>
@@ -25,36 +25,40 @@
 import http from '@/util/http-common';
 
 export default {
-  name: 'QnaModify',
+  name: 'NoticeModify',
   data() {
     return {
-      title: '',
+      subject: '',
       content: '',
     };
   },
   created() {
     http
-      .get(`/qna/detail/${this.$route.params.id}`)
+      .get(`/article/detail/${this.$route.params.articleno}`)
       .then(({ data }) => {
         console.log(data);
-        this.id = data.id;
+        this.articleno = data.articleno;
         this.userid = data.userid;
-        this.title = data.title;
+        this.subject = data.subject;
         this.content = data.content;
       });
   },
   methods: {
-    modifyQna() {
-      console.log('updateQna call');
+    modifyNotice() {
+      console.log('updateNotice call');
 
       http
-        .put(`/qna/modify`, {
-          id: this.id,
+        .put(`/article/modify`, {
+          articleno: this.articleno,
           userid: this.userid,
-          title: this.title,
+          subject: this.subject,
           content: this.content,
         })
         .then(({ data }) => {
+          //         let msg = '수정 처리시 문제가 발생했습니다.';
+          //         if (data === 'success') {
+          //           msg = '수정이 완료되었습니다.';
+          //         }
           console.log(data);
           alert('수정이 완료되었습니다.');
           this.moveList();
@@ -63,18 +67,19 @@ export default {
           alert('수정 처리시 에러가 발생했습니다.');
         });
     },
-        deleteQna() {
+        deleteNotice() {
       http
-        .delete(`/qna/delete/${this.$route.params.id}`, {
-         id: this.$route.params.id,
+        .delete(`/article/delete/${this.$route.params.articleno}`, {
+          articleno: this.$route.params.articleno,
         })
         .then(() => {
           alert('삭제가 완료되었습니다.');
+          // delete - 자동 새로고침하게 하기
           this.moveList();
         });
     },
     moveList() {
-      this.$router.push('/qna/list');
+      this.$router.push('/notice/list');
     },
   },
 };
