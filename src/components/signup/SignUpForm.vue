@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-form ref="form" v-model="valid" lazy-validation>
+    <v-form ref="form" v-model="valid" lazy-validation style="width:400px;margin: auto;">
       <v-text-field v-model="id" :counter="10" :rules="idRules" label="Id" required> </v-text-field>
       <button type="button" style="float: right;" @click="checkDuplicateId()">
         클릭! 아이디 중복 검사</button
