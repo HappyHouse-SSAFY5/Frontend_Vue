@@ -47,6 +47,7 @@ const actions = {
     },
     async logout(store) {
         store.commit('IS_AUTH', false);
+        store.commit('USERNAME',null);
         return "You've logged out Successfully."
     }
 }
