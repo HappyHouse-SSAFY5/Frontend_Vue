@@ -17,7 +17,7 @@ import AptSearchBar from '@/components/apt/AptSearchBar.vue';
 import AptList from '@/components/apt/AptList.vue';
 import AptDetail from '@/components/apt/AptDetail.vue';
 import AptSearchBanner from '@/components/apt/AptSearchBanner.vue';
-
+import { mapActions } from 'vuex';
 export default {
   name: 'Apt',
   components: {
@@ -25,6 +25,12 @@ export default {
     AptSearchBanner,
     AptList,
     AptDetail,
+  },
+  methods:{
+    ...mapActions(['removeRemainApts']),
+    removeRemainApts(){
+      this.removeRemainApts();
+    }
   },
 };
 </script>
