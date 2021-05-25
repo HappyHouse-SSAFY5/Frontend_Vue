@@ -35,7 +35,8 @@ let handleLoginResponse = (store, loginResponse) => {
       return;
     }
     store.commit('USERID',loginResponse.userid);
-    store.commit('USERNAME',loginResponse.username);
+    store.commit('USERNAME', loginResponse.username);
+    store.commit('ERROR_STATE',null);
     store.commit('IS_AUTH', true);
 }
 
@@ -47,7 +48,9 @@ const actions = {
     },
     async logout(store) {
         store.commit('IS_AUTH', false);
-        store.commit('USERNAME',null);
+        store.commit('USERNAME', null);
+        store.commit('ERROR_STATE', null);
+        store.commit('USERID', null);
         return "You've logged out Successfully."
     }
 }
