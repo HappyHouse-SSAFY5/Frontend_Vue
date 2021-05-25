@@ -1,5 +1,12 @@
 <template>
-  <v-alert v-if="dong" type="success">
+  <v-alert 
+    v-if="dong" 
+    color="blue darken-4"
+    dense 
+    type="success"
+    width="50%"
+    style="margin:auto; margin-top:24px;"
+  >
     {{dong}}에 대한 검색 결과입니다.
   </v-alert>
 </template>
