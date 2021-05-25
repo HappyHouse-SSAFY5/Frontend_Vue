@@ -98,18 +98,25 @@ export default {
       })
   },
   methods: {
-    ...mapActions(['toggleDrawerByBtn', 'drawMarker']),
+    ...mapActions(['toggleDrawerByBtn', 'drawMarker', 'setDongAfterPick']),
     toggleByBtnInside(){
       this.toggleDrawerByBtn();
       this.drawMarker(null);
     },
     togglepick(){
-      if(this.apt.pick){ // 이미 뽑힌 적이 있다면 다시 누르면 삭제
-      console.log("unpick");
+      if(this.apt.picked){ // 이미 뽑힌 적이 있다면 다시 누르면 삭제
+        console.log("unpick");
         http
-        .delete('/delete/'+this.userid+'/'+this.apt.housedeal_no)
+        .delete('/unpick', {
+          data: {
+            housedeal_id: this.apt.housedeal_no,
+            user_id: this.userid
+          }
+        })
         .then(data =>{
           console.log(data);
+          this.setDongAfterPick(this.apt.dong);
+          this.$router.go();
         })
         .catch(error=>{
           console.log(error);
@@ -122,6 +129,8 @@ export default {
         })
         .then(data =>{
           console.log(data);
+          this.setDongAfterPick(this.apt.dong);
+          this.$router.go();
         })
         .catch(error=>{
           console.log(error);

@@ -51,14 +51,13 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['getAptList']),
+    ...mapActions(['getAptList', 'setDongAfterPick']),
     sendKeyword() {
-      console.log("on searchbar");
-      console.log(this.userid);
       if (this.dong) this.getAptList({
         dong: this.dong,
         userid: this.userid,
       });
+      this.setDongAfterPick("");
       this.dong = '';
     },
     querySelections (v) {

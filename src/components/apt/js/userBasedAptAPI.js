@@ -1,49 +1,31 @@
 import http from '@/util/http-common';
 
-const getPickedHousedelIdx = (userid) => {
-    console.log("on getPickedHousedelIdx");
-    console.log(userid);
-    http
-        .post("/pick/housedeal/" + userid);
-    //   .then((response) => {
-    //     commit('GET_APT_LIST', response.data);
-    //     console.log(response.data);
-    //     commit('SELECT_APT', {});
-    //     commit('SET_SEARCHED_DONG', dong);
-    //   })
-    //   .catch((error) => {
-    //     console.dir(error);
-    //   });
+const getPickedHousedealIdx = (userid) => {
+    return http
+        .get("/pick/housedeal/" + userid)
 }
 
 const getAptsInfo = (dong) => {
-    console.log("on getAptsInfo");
-    console.log(dong);
-    http
+    return http
         .post("/search/dong", {
             key: "dong",
             word: dong,
-        });
-    //   .then((response) => {
-    //     commit('GET_APT_LIST', response.data);
-    //     console.log(response.data);
-    //     commit('SELECT_APT', {});
-    //     commit('SET_SEARCHED_DONG', dong);
-    //   })
-    //   .catch((error) => {
-    //     console.dir(error);
-    //   });
+        })
 }
 
 export default {
-    async getAptInfo(dong, userid) {
+    async getAptInfo({ dong, userid }) {
         try {
             const getAptsInofPromise = await getAptsInfo(dong);
-            const getPickedHousedelIdxPromise = await getPickedHousedelIdx(userid);
-            console.log("onAPTAPI");
-            console.log(getAptsInofPromise);
-            console.log(getPickedHousedelIdxPromise);
-            return getAptsInofPromise.data;
+            const getPickedHousedealIdxPromise = await getPickedHousedealIdx(userid);
+            const mingled = getAptsInofPromise.data.map(apt => {
+                const newapt = apt;
+                if (getPickedHousedealIdxPromise.data.includes(apt.housedeal_no)) {
+                    newapt["picked"] = true;
+                }
+                return newapt;
+            })
+            return mingled;
         } catch (error) {
             console.log(error);
         }

@@ -3,7 +3,7 @@ const state = {
   apts: [],
   apt: Object,
   drawer: false,
-  searchedDong : "",
+  searchedDong: "",
 }
 const getters = {
   getApt: state => state.apt,
@@ -24,12 +24,12 @@ const mutations = {
   },
   SET_SEARCHED_DONG(state, dong) {
     state.searchedDong = dong;
-  }
+  },
 }
 
 const actions = {
-  async getAptList({ commit }, { dong, username }) {
-    let aptResponse = await userBasedAptAPI.getAptInfo({ dong, username });
+  async getAptList({ commit }, { dong, userid }) {
+    let aptResponse = await userBasedAptAPI.getAptInfo({ dong, userid });
     commit('GET_APT_LIST', aptResponse);
     console.log(aptResponse);
     commit('SELECT_APT', {});
@@ -45,6 +45,9 @@ const actions = {
   },
   toggleDrawerByBtn({ commit }) {
     commit('TOGGLE_DRAWER');
+  },
+  removeRemainApts({ commit }) {
+    commit('GET_APT_LIST', []);
   },
 }
 

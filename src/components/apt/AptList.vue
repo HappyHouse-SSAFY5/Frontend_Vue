@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import AptListItem from '@/components/apt/AptListItem.vue';
 export default {
   name: 'AptList',
@@ -41,8 +41,25 @@ export default {
   },
   computed: {
     ...mapGetters({
-      apts: 'getApts'
+      apts: 'getApts',
+      isAfterPick: 'getAfterPick',
+      userid: 'getUserid',
     })
+  },
+  methods:{
+    ...mapActions(['getAptList', 'setDongAfterPick', 'removeRemainApts']),
+    afterPick(){
+      this.getAptList({
+        dong: this.isAfterPick,
+        userid: this.userid,
+      });
+      this.setDongAfterPick("");
+    },
+  },
+  created(){
+    if(this.isAfterPick){
+      this.afterPick();
+    }
   },
 };
 </script>

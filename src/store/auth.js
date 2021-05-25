@@ -5,27 +5,32 @@ const state = {
     username: '',
     errorState: '',
     isAuth: false,
+    reloadAfterPick: "",
 }
 const getters = {
     getUserid: state => state.userid,
     getUsername: state => state.username,
     getErrorState: state => state.errorState,
     getIsAuth: state => state.isAuth,
+    getAfterPick: state => state.reloadAfterPick,
 }
 
 const mutations = {
     USERID(state, userid) {
-        state.userid = userid
+      state.userid = userid
     },
     USERNAME(state, username) {
-    state.username = username
+      state.username = username
     },
     ERROR_STATE(state, errorState) {
-    state.errorState = errorState
+      state.errorState = errorState
     },
     IS_AUTH(state, isAuth) {
-    state.isAuth = isAuth
-    }
+      state.isAuth = isAuth
+    },
+    SET_DONG_AFTER_PICK(state, dong) {
+      state.reloadAfterPick = dong;
+    },
 }
 
 let handleLoginResponse = (store, loginResponse) => {
@@ -52,7 +57,10 @@ const actions = {
         store.commit('ERROR_STATE', null);
         store.commit('USERID', null);
         return "You've logged out Successfully."
-    }
+    },
+    setDongAfterPick({ commit }, dong) {
+        commit('SET_DONG_AFTER_PICK', dong);
+    },
 }
 
 export default {
