@@ -7,6 +7,7 @@ import Mypage from '@/views/MyPage.vue';
 import Qna from '@/views/Qna.vue';
 import Signup from '@/views/Signup.vue';
 import Login from '@/views/Login.vue';
+import FindInfo from '@/views/FindInfo.vue';
 import Notice from '@/views/Notice.vue';
 // import { LayoutPlugin } from 'bootstrap-vue';
 
@@ -47,6 +48,11 @@ const routes = [
     path: '/mypage',
     name: 'Mypage',
     component: Mypage,
+  },
+  {
+    path: '/findinfo',
+    name: 'FindInfo',
+    component: FindInfo,
   },
   {
     path: '/qna',

@@ -40,6 +40,7 @@
 import http from '@/util/http-common';
 
 export default {
+  flag: '',
   name: 'SignUpForm',
   data: () => ({
     valid: true,
@@ -69,22 +70,18 @@ export default {
   }),
   methods: {
     checkDuplicateId() {
-      // 수정하기
-      // http
-      //   .get('/user/list')
-      //   .then(({ data }) => {
-      //     this.members = data;
-      //     for (member in members) {
-      //       if (this.id === member.id) {
-      //         alert('아이디가 중복됩니다.');
-      //       } else {
-      //         alert('사용할 수 있는 아이디입니다.');
-      //       }
-      //     }
-      //   })
-      //   .catch(() => {
-      //     alert('아이디 중복확인 중 문제가 발생하였습니다.');
-      //   });
+      http
+        .get(`/admin/user/${this.id}`)
+        .then(({ data }) => {
+          if(data != null && data !=''){
+            alert('아이디가 중복됩니다.');
+            this.flag = false;
+          }else{
+            alert('사용할 수 있는 아이디입니다.');
+            this.flag = true;
+          }
+        })
+        .catch(() => {});
     },
     validate() {
       let err = true;
@@ -105,6 +102,7 @@ export default {
         ((msg = '주소 입력해주세요'), (err = false), this.$refs.address.focus());
 
       if (!err) alert(msg);
+      if(!this.flag) alert('아이디 중복 여부를 확인해주세요.');
       else this.signUp();
     },
     signUp() {
