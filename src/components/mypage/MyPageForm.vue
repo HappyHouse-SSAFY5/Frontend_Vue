@@ -1,44 +1,94 @@
 <template>
-<v-app>
-  <div class="mypageform container-fluid">
-  <div class="row">
-    <div class="card col-md-6">
-<div class="form-group" align="left">
-          <h2 align="center">My Page</h2>
-				<label for="id">ID</label>
-				<input type="text" class="form-control" id="id" name="id" v-model="id" ref="id" readonly>
-			</div>
-			<div class="form-group" align="left">
-				<label for="name">Name</label>
-							<input type="text" class="form-control" id="name" name="name" v-model="name" ref="name" readonly>
-			</div>
-			<div class="form-group" align="left">
-				<label for="password">비밀번호</label>
-				<input type="password" class="form-control" id="password" name="password" v-model="password" ref="password" placeholder="">
-			</div>
-			<div class="form-group" align="left">
-				<label for="passwordchk">비밀번호 재입력</label>
-				<input type="password" class="form-control" id="passwordchk" name="passwordchk" v-model="passwordchk" ref="passwordchk" placeholder="">
-      </div>
-			<div class="form-group" align="left">
-				<label for="email">이메일</label><br>
-				<div id="email" class="custom-control-inline">
-				<input type="email" class="form-control" id="email" name="email" v-model="email" ref="email">
-				</div>
-			</div>
-			<div class="form-group" align="left">
-				<label for="">주소</label><br>
-				<input type="text" class="form-control" id="address" name="address" v-model="address" ref="address">
-			</div>
-      <div>
-        <button class="col-sm-3" id="btn" align="left" type="submit" @click="validate">수정 / 확인</button>
-        <button class="col-sm-3" id="btn" align="right" type="submit" @click="deleteUser">회원 탈퇴</button>
+  <v-app>
+    <div class="mypageform container-fluid">
+      <div class="row">
+        <div class="card col-md-6">
+          <div class="form-group" align="left">
+            <h2 align="center">My Page</h2>
+            <label for="id">ID</label>
+            <input
+              type="text"
+              class="form-control"
+              id="id"
+              name="id"
+              v-model="id"
+              ref="id"
+              readonly
+            />
+          </div>
+          <div class="form-group" align="left">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              v-model="name"
+              ref="name"
+              readonly
+            />
+          </div>
+          <div class="form-group" align="left">
+            <label for="password">비밀번호</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              v-model="password"
+              ref="password"
+              placeholder=""
+            />
+          </div>
+          <div class="form-group" align="left">
+            <label for="passwordchk">비밀번호 재입력</label>
+            <input
+              type="password"
+              class="form-control"
+              id="passwordchk"
+              name="passwordchk"
+              v-model="passwordchk"
+              ref="passwordchk"
+              placeholder=""
+            />
+          </div>
+          <div class="form-group" align="left">
+            <label for="email">이메일</label><br />
+            <div id="email" class="custom-control-inline">
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                v-model="email"
+                ref="email"
+              />
+            </div>
+          </div>
+          <div class="form-group" align="left">
+            <label for="">주소</label><br />
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              name="address"
+              v-model="address"
+              ref="address"
+            />
+          </div>
+          <div>
+            <button class="col-sm-3" id="btn" align="left" type="submit" @click="validate">
+              수정 / 확인
+            </button>
+            <button class="col-sm-3" id="btn" align="right" type="submit" @click="deleteUser">
+              회원 탈퇴
+            </button>
+          </div>
+        </div>
+        <div class="card col-md-6">찜하기 목록</div>
       </div>
     </div>
-    <div class="card col-md-6">찜하기 목록</div>
-  </div>
-</div>
-</v-app>
+  </v-app>
 </template>
 
 <script>
@@ -51,7 +101,7 @@ export default {
     ...mapGetters({
       loginUserId: 'getUserid',
     }),
-     passwordConfirmationRules() {
+    passwordConfirmationRules() {
       return () =>
         this.password === this.passwordchk || 'Password Check must be the same as the password';
     },
@@ -79,7 +129,7 @@ export default {
     validate() {
       let err = true;
       let msg = '';
-     !this.name && ((msg = '이름 입력해주세요'), (err = false), this.$refs.name.focus());
+      !this.name && ((msg = '이름 입력해주세요'), (err = false), this.$refs.name.focus());
       err &&
         !this.password &&
         ((msg = '비밀번호 입력해주세요'), (err = false), this.$refs.password.focus());
@@ -92,8 +142,8 @@ export default {
       err &&
         !this.address &&
         ((msg = '주소 입력해주세요'), (err = false), this.$refs.address.focus());
-      
-      if(this.password != this.passwordchk) {
+
+      if (this.password != this.passwordchk) {
         msg = '비밀번호와 비밀번호 재입력이 다릅니다.';
         err = false;
       }
@@ -124,19 +174,21 @@ export default {
         });
     },
     deleteUser() {
-      http.delete(`/user/delete/${this.id}`, {
-        userid: this.id,
-      }).then(() => {
-        alert('회원 탈퇴되었습니다. 감사합니다.');
-        this.clicklogout();
-        this.moveList();
-      })
+      http
+        .delete(`/user/delete/${this.id}`, {
+          userid: this.id,
+        })
+        .then(() => {
+          alert('회원 탈퇴되었습니다. 감사합니다.');
+          this.clicklogout();
+          this.moveList();
+        });
     },
-    async clicklogout(){
+    async clicklogout() {
       try {
-          await this.logout();
+        await this.logout();
       } catch (error) {
-          console.log(error);
+        console.log(error);
       }
     },
     moveList() {
@@ -152,14 +204,14 @@ export default {
   color: white;
 }
 input {
-  background-color: #9FA8DA;
+  background-color: #9fa8da;
 }
 .card {
-  background-color: #9FA8DA;
+  background-color: #9fa8da;
   border: 3px solid white;
 }
-#btn {  
-  background-color: #9FA8DA;
+#btn {
+  background-color: #9fa8da;
   border: solid 2px white;
 }
 </style>
