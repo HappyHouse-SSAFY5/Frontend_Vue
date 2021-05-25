@@ -86,4 +86,7 @@ h2 {
   border: 1px solid #d1c4e9;
   color: black;
 }
+span {
+  width: 50%;
+}
 </style>

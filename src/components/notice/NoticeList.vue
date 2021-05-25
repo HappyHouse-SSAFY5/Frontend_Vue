@@ -1,8 +1,8 @@
 <template>
   <v-row class="noticelist" justify="center">
-    <b-col>
+    <v-col>
       <h2>Notice</h2>
-    </b-col>
+    </v-col>
     <b-button id="btn" variant="outline-primary" @click="moveForm">등록</b-button>
     <v-expansion-panels popout style="margin-bottom: 30px">
       <v-expansion-panel v-for="(notice, i) in notices" :key="i" :notice="notice">
@@ -13,7 +13,7 @@
         </v-expansion-panel-header>
         <v-expansion-panel-content
           ><div v-html="notice.content"></div>
-          <b-col>
+          <v-col>
             <b-button
               id="btn2"
               v-if="loginUserId === notice.userid"
@@ -22,7 +22,7 @@
               :to="`/notice/modify/${notice.articleno}`"
               >수정 / 삭제
             </b-button>
-          </b-col>
+          </v-col>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -80,12 +80,11 @@ h2 {
   border: 1px solid white;
   color: white;
 }
-.mid {
-  margin-left: 20px;
-  margin-right: 20px;
-}
 #btn2 {
   border: 1px solid #d1c4e9;
   color: black;
+}
+span{
+  width: 33%;
 }
 </style>
