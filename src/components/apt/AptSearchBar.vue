@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import Dongs from '@/resource/dongname.json';
 export default {
   name: 'SearchBar',
@@ -45,10 +45,19 @@ export default {
       val && val !== this.select && this.querySelections(val)
     },
   },
+  computed:{
+    ...mapGetters({
+      userid: 'getUserid'
+    })
+  },
   methods: {
-    ...mapActions(['getAptList']),
+    ...mapActions(['getAptList', 'setDongAfterPick']),
     sendKeyword() {
-      if (this.dong) this.getAptList(this.dong);
+      if (this.dong) this.getAptList({
+        dong: this.dong,
+        userid: this.userid,
+      });
+      this.setDongAfterPick("");
       this.dong = '';
     },
     querySelections (v) {
