@@ -1,7 +1,7 @@
 <template>
-  <v-row justify="center">
+  <v-row class="qnalist" justify="center">
     <b-col>
-      <h2>QNA</h2>
+      <h2>Q&amp;A</h2>
     </b-col>
     <b-button id="btn" variant="outline-primary" @click="moveForm">등록</b-button>
     <v-expansion-panels popout style="margin-bottom: 30px">
@@ -11,7 +11,7 @@
           ><span class="mid">{{ qna.userid }}</span>
         </v-expansion-panel-header>
         <v-expansion-panel-content
-          >{{ qna.content }}
+          ><div v-html="qna.content"></div>
           <b-col>
             <b-button
               id="btn2"
@@ -29,7 +29,6 @@
 </template>
 
 <script>
-// import NoticeListItem from '@/components/notice/NoticeListItem.vue';
 import http from '@/util/http-common';
 import { mapGetters } from 'vuex';
 
@@ -45,7 +44,6 @@ export default {
       qnas: [],
     };
   },
-  components: {},
   created() {
     http
       .get('/qna/list')
@@ -66,6 +64,14 @@ export default {
 </script>
 
 <style scoped>
+.qnalist {
+  background-color: #B39DDB;
+  margin-top: 15px;
+}
+h2 {
+  margin-bottom: 50px;
+  color: white;
+}
 #btn {
   margin-left: 1130px;
   margin-bottom: 10px;
