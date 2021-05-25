@@ -1,7 +1,7 @@
 <template>
   <v-row class="noticelist" justify="center">
     <b-col>
-      <h2>공지사항</h2>
+      <h2>Notice</h2>
     </b-col>
     <b-button id="btn" variant="outline-primary" @click="moveForm">등록</b-button>
     <v-expansion-panels popout style="margin-bottom: 30px">
@@ -12,7 +12,7 @@
           ><span>{{ notice.regtime }}</span>
         </v-expansion-panel-header>
         <v-expansion-panel-content
-          >{{ notice.content }}
+          ><div v-html="notice.content"></div>
           <b-col>
             <b-button
               id="btn2"
@@ -30,7 +30,6 @@
 </template>
 
 <script>
-// import NoticeListItem from '@/components/notice/NoticeListItem.vue';
 import http from '@/util/http-common';
 import { mapGetters } from 'vuex';
 
@@ -67,6 +66,10 @@ export default {
 </script>
 
 <style scoped>
+.noticelist {
+  background-color: #7986CB;
+  margin-top: 15px;
+}
 h2 {
   margin-bottom: 50px;
   color: white;
