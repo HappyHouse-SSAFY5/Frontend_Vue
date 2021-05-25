@@ -31,7 +31,7 @@
             small
             color="indigo darken-3"
             style="margin:auto;"
-            @click="pick"
+            @click="togglepick"
           >
             <v-icon dark>
               mdi-heart
@@ -98,23 +98,44 @@ export default {
       })
   },
   methods: {
-    ...mapActions(['toggleDrawerByBtn', 'drawMarker']),
+    ...mapActions(['toggleDrawerByBtn', 'drawMarker', 'setDongAfterPick']),
     toggleByBtnInside(){
       this.toggleDrawerByBtn();
       this.drawMarker(null);
     },
-    pick(){
-      http
+    togglepick(){
+      if(this.apt.picked){ // 이미 뽑힌 적이 있다면 다시 누르면 삭제
+        console.log("unpick");
+        http
+        .delete('/unpick', {
+          data: {
+            housedeal_id: this.apt.housedeal_no,
+            user_id: this.userid
+          }
+        })
+        .then(data =>{
+          console.log(data);
+          this.setDongAfterPick(this.apt.dong);
+          this.$router.go();
+        })
+        .catch(error=>{
+          console.log(error);
+        });
+      }else{
+        http
         .post('/pick',{
           user_id: this.userid,
           housedeal_id: this.apt.housedeal_no
         })
         .then(data =>{
           console.log(data);
+          this.setDongAfterPick(this.apt.dong);
+          this.$router.go();
         })
         .catch(error=>{
           console.log(error);
         });
+      }
     }
   },
 };

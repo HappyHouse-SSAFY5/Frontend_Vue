@@ -25,8 +25,18 @@
           class="mx-0"
         >
           <v-col cols="1">
-              <v-icon>mdi-heart</v-icon>
+              <v-icon
+              v-if="this.apt.picked"
+              color="pink"
+              >mdi-heart</v-icon>
+              <v-icon
+              v-else
+              color=""
+              >
+                mdi-heart
+              </v-icon>
           </v-col>
+          
           <v-col cols="11" style="text-align: right;">
               $ • {{ (this.apt.dealAmount.replace(',', '') * 10000) | price }}
           </v-col>
