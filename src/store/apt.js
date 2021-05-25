@@ -54,6 +54,7 @@ const actions = {
       })
       .then((response) => {
         commit('GET_APT_LIST', response.data);
+        console.log(response.data);
         commit('SELECT_APT', {});
         commit('SET_SEARCHED_DONG', dong);
       })
@@ -61,8 +62,9 @@ const actions = {
         console.dir(error);
       });
   },
-  selectApt({ commit }, apt) {
+  async selectApt({ commit }, apt) {
     commit('SELECT_APT', apt);
+    return apt;
   },
   toggleDrawer({ commit }) {
     commit('TOGGLE_DRAWER');
