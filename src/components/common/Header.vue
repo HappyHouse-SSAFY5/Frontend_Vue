@@ -18,8 +18,7 @@
             <router-link to="/vuetest/apt" class="roboto-bold">Apt Info</router-link>
           </v-btn>
            <v-btn>
-            <router-link to="/notice">공지사항</router-link>
-            <v-icon>mdi-heart</v-icon>
+            <router-link to="/notice" class="roboto-bold">Notice</router-link>
           </v-btn>
           <v-btn>
             <router-link to="/qna" class="roboto-bold">QNA</router-link>
