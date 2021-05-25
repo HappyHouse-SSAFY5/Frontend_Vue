@@ -1,5 +1,4 @@
 import http from '@/util/http-common';
-// import { LayoutPlugin } from 'bootstrap-vue';
 
 const getUserInfo = (id, pw) => {
     return http.post('/user/login', {

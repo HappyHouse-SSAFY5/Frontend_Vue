@@ -1,7 +1,7 @@
 <template>
   <v-toolbar
     dark
-    color="teal"
+    color="indigo darken-4"
   >
     <v-toolbar-title>아파트 매매 기록 검색</v-toolbar-title>
     <v-autocomplete
