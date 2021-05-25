@@ -34,7 +34,6 @@
 <script>
 import { mapGetters } from 'vuex';
 import AptListItem from '@/components/apt/AptListItem.vue';
- 
 export default {
   name: 'AptList',
   components: {
