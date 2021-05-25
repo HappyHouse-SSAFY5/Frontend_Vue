@@ -25,8 +25,11 @@
           </v-col>
         </v-row>
       </v-container>
-      <v-btn :disabled="!valid" color="success" class="mr-4" @click="submit">
+      <v-btn :disabled="!valid" color="success" class="mr-5" @click="submit">
         Login
+      </v-btn>
+     <v-btn class="mr-3" @click="findInfo">
+        Find Password
       </v-btn>
     </v-form>
   </v-app>
@@ -40,6 +43,7 @@ export default {
   data() {
     return {
       valid: true,
+      modal: false,
       id: '',
       nameRules: [(v) => !!v || 'ID is required'],
       pw: '',
@@ -55,6 +59,9 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    findInfo() {
+      this.$router.push('/findinfo');
     },
     moveHome() {
       this.$router.push({

@@ -3,14 +3,14 @@ const state = {
   apts: [],
   apt: Object,
   drawer: false,
-  searchedDong : "",
-}
+  searchedDong: '',
+};
 const getters = {
-  getApt: state => state.apt,
-  getApts: state => state.apts,
-  getDrawer: state => state.drawer,
-  getSearchedDong: state => state.searchedDong,
-}
+  getApt: (state) => state.apt,
+  getApts: (state) => state.apts,
+  getDrawer: (state) => state.drawer,
+  getSearchedDong: (state) => state.searchedDong,
+};
 
 const mutations = {
   GET_APT_LIST(state, apts) {
@@ -24,8 +24,8 @@ const mutations = {
   },
   SET_SEARCHED_DONG(state, dong) {
     state.searchedDong = dong;
-  }
-}
+  },
+};
 
 const actions = {
   getAptList({ commit }, dong) {
@@ -40,17 +40,17 @@ const actions = {
     //   'http://openapi.molit.go.kr/OpenAPI_ToolInstallPackage/service/rest/RTMSOBJSvc/getRTMSDataSvcAptTradeDev';
 
     // const params = {
-      
+
     //   // DEAL_YMD: '202010',
     //   // serviceKey: decodeURIComponent(SERVICE_KEY),
     // };
 
     // npm install --save axios
-    
+
     axios
-      .post("http://localhost:8080/happyhouse/search/dong", {
-        key: "dong",
-        word: dong
+      .post('http://localhost:8080/happyhouse/search/dong', {
+        key: 'dong',
+        word: dong,
       })
       .then((response) => {
         commit('GET_APT_LIST', response.data);
@@ -71,14 +71,14 @@ const actions = {
   },
   toggleDrawerByBtn({ commit }) {
     commit('TOGGLE_DRAWER');
-  }
-}
+  },
+};
 
 export default {
-    state: {
-      ...state
-    },
-    getters,
-    mutations,
-    actions
-}
+  state: {
+    ...state,
+  },
+  getters,
+  mutations,
+  actions,
+};
