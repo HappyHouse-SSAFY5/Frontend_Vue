@@ -1,22 +1,26 @@
 <template>
-  <div class="regist">
-   <h2>QNA 수정</h2>
-    <div class="regist_form">
-      <label for="title">제목</label>
-      <input type="text" id="title" name="title" v-model="title" ref="title" /><br />
-      <label for="content">내용</label>
-      <br />
-      <textarea
-        id="content"
-        name="content"
-        v-model="content"
-        ref="content"
-        cols="35"
-        rows="5"
-      ></textarea
-      ><br />
-      <button class="btn btn-warning" @click="modifyQna">수정</button>
-      <button class="btn btn-danger" @click="deleteQna">삭제</button>
+  <div class="modify">
+    <h2>Modify Q&amp;A Form</h2>
+    <div class="modify_form">
+      <div class="form-group" align="left">
+        <label for="title"><h6>TITLE</h6></label>
+        <input type="text" id="subject" name="title" v-model="title" ref="title" /><br />
+      </div>
+      <div class="form-group" align="left">
+        <label for="content"><h6>CONTENT</h6></label>
+        <br />
+        <textarea
+          id="content"
+          name="content"
+          v-model="content"
+          ref="content"
+          cols="35"
+          rows="5"
+        ></textarea
+        ><br />
+      </div>
+      <button class="btn btn-default" @click="modifyQna">SUBMIT</button>
+      <button class="btn btn-default" @click="deleteQna">DELETE</button>
     </div>
   </div>
 </template>
@@ -91,29 +95,28 @@ textarea,
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-  color: #787878;
   font-size: medium;
 }
 button,
 .btn {
-  background-color: #EDE7F6;
-  color: 9FA8DA;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: solid 1px #9FA8DA;
+  color: 9fa8da;
+  border: solid 1px black;
   border-radius: 4px;
   cursor: pointer;
   color: black;
+  margin-right: 2px;
 }
-.regist {
+.modify {
   padding: 10px;
+  background-color: #B39DDB;
 }
-.regist_form {
+.modify_form {
   border-radius: 5px;
-  background-color: #EDE7F6;
   padding: 20px;
+  background-color: white;
 }
-label {
-  font: bold;
+h2 {
+  color: white;
+  margin-bottom: 20px;
 }
 </style>

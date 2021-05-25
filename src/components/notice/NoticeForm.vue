@@ -1,16 +1,25 @@
 <template>
-  <div class="card col-lg-12" align="center">
-    <h2>공지사항 등록</h2>
-    <div>
+  <div class="regist">
+    <h2>Regist Notice Form</h2>
+    <div class="regist_form">
       <div class="form-group" align="left">
-        <label for="subject">제목:</label>
-        <input type="text" class="form-control" id="subject" name="subject" v-model="subject" ref="subject" />
+        <label for="subject"><h6>TITLE</h6></label>
+        <input type="text" id="subject" name="subject" v-model="subject" ref="subject" /><br />
       </div>
       <div class="form-group" align="left">
-        <label for="content">내용:</label>
-        <textarea class="form-control" rows="15" id="content" name="content" v-model="content" ref="content"></textarea>
+        <label for="content"><h6>CONTENT</h6></label>
+        <br />
+        <textarea
+          id="content"
+          name="content"
+          v-model="content"
+          ref="content"
+          cols="35"
+          rows="5"
+        ></textarea
+        ><br />
       </div>
-      <button class="btn btn-primary" @click="addNotice">등록</button>
+      <button class="btn btn-default" @click="addNotice">SUBMIT</button>
     </div>
   </div>
 </template>
@@ -57,16 +66,39 @@ export default {
 };
 </script>
 
-<style>
-.card {
-  background-color: #EDE7F6;
+<style scoped>
+input,
+textarea,
+.view {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-size: medium;
+}
+button,
+.btn {
+  color: 9fa8da;
+  border: solid 1px black;
+  border-radius: 4px;
+  cursor: pointer;
+  color: black;
+  margin-right: 2px;
+}
+.regist {
+  padding: 10px;
+  background-color: #7986cb;
+}
+.regist_form {
+  border-radius: 5px;
+  padding: 20px;
+  background-color: white;
 }
 h2 {
-  color: #9FA8DA;
-}
-.btn {
-  border: solid 1px #9FA8DA;
-  background-color: #EDE7F6;
-  color: 9FA8DA;
+  color: white;
+  margin-bottom: 20px;
 }
 </style>
