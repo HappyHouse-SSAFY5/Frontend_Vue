@@ -16,21 +16,16 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'Main',
-    redirect: '/vuetest/',
-  },
-  {
-    path: '/vuetest/',
     name: 'Home',
     component: Home,
   },
   {
-    path: '/vuetest/apt',
+    path: '/apt',
     name: 'Apt',
     component: Apt,
   },
   {
-    path: '/vuetest/about',
+    path: '/about',
     name: 'About',
     component: About,
   },
