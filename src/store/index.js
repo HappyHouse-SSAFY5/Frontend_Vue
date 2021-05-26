@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import { LayoutPlugin } from 'bootstrap-vue';
 import createPersistedState from 'vuex-persistedstate';
 import Auth from './auth.js';
 import Apt from './apt.js';
 import Store from './store.js';
 import Notice from './notice.js';
 import Qna from './qna.js';
+import Picks from './picks';
 
 Vue.use(Vuex);
 
@@ -17,6 +17,7 @@ export default new Vuex.Store({
     store: Store,
     notice: Notice,
     qna: Qna,
+    picks: Picks,
   },
   plugins: [
     createPersistedState({

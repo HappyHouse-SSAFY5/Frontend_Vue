@@ -21,9 +21,11 @@
 import { mapGetters } from 'vuex';
 export default {
     name:"GoogleMap",
+    props: {
+      apt: Object,
+    },
     computed: {
         ...mapGetters({
-          apt: 'getApt',
           point: 'getClickedStore'
         })
     },
