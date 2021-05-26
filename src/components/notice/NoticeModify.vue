@@ -1,6 +1,7 @@
 <template>
   <div class="modify">
     <h2>Modify Notice Form</h2>
+    <div class="subtitle">정확한 정보를 기입해주세요<v-icon color="white">mdi-exclamation-thick</v-icon></div>
     <div class="modify_form">
       <div class="form-group" align="left">
         <label for="subject"><h6>TITLE</h6></label>
@@ -19,8 +20,12 @@
         ></textarea
         ><br />
       </div>
-      <button class="btn btn-default" @click="modifyNotice">SUBMIT</button>
-      <button class="btn btn-default" @click="deleteNotice">DELETE</button>
+      <v-btn color="indigo darken-3" dark @click="modifyNotice">
+        SUBMIT
+      </v-btn>
+      <v-btn color="primary" dark @click="deleteNotice">
+        DELETE
+      </v-btn>
     </div>
   </div>
 </template>
@@ -54,8 +59,7 @@ export default {
           subject: this.subject,
           content: this.content,
         })
-        .then(({ data }) => {
-          console.log(data);
+        .then(() => {
           alert('수정이 완료되었습니다.');
           this.moveList();
         })
@@ -106,16 +110,26 @@ button,
   margin-right: 2px;
 }
 .modify {
-  padding: 10px;
-  background-color: #7986cb;
+  padding: 60px 20px 20px 20px;
+  background-color: #1A237E;
+  text-align: left;
+  margin: 200px;
+  font-family: 'Roboto';
 }
 .modify_form {
-  border-radius: 5px;
   padding: 20px;
   background-color: white;
 }
 h2 {
   color: white;
   margin-bottom: 20px;
+  font-weight: 800;
+  text-align: left;
+}
+.subtitle{
+  text-align: right;
+  font-size: 20px;
+  color: white;
+  font-weight: lighter;
 }
 </style>
