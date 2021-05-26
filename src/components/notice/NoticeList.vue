@@ -1,28 +1,33 @@
 <template>
-  <v-row class="noticelist" justify="center">
-    <v-col>
+  <v-row class="noticelist">
+    <v-col cols="10">
       <h2>Notice</h2>
+      <p class="subtitle"> 아아 알립니다 <v-icon color="indigo darken-4">mdi-thought-bubble</v-icon></p>
     </v-col>
-    <b-button id="btn" variant="outline-primary" @click="moveForm">등록</b-button>
+    <v-col cols="2" v-if="loginUserId === 'admin'">
+      <v-btn color="black" @click="moveForm" outlined>
+        공지사항 쓰러가기
+      </v-btn>
+    </v-col>
     <v-expansion-panels popout style="margin-bottom: 30px">
       <v-expansion-panel v-for="(notice, i) in notices" :key="i" :notice="notice">
-        <v-expansion-panel-header
-          ><span>{{ notice.subject }}</span
-          ><span class="mid">{{ notice.userid }}</span
-          ><span>{{ notice.regtime }}</span>
+        <v-expansion-panel-header color="indigo darken-2"
+          ><span class="qna-text">{{ notice.subject }}</span
+          ><span class="mid qna-text">{{ notice.userid }}</span
+          ><span class="qna-text">{{ notice.regtime }}</span>
         </v-expansion-panel-header>
         <v-expansion-panel-content
-          ><div v-html="notice.content"></div>
-          <v-col>
-            <b-button
-              id="btn2"
-              v-if="loginUserId === notice.userid"
-              variant="outline-warning"
-              router-link
-              :to="`/notice/modify/${notice.articleno}`"
-              >수정 / 삭제
-            </b-button>
-          </v-col>
+          style="padding: 40px 28px 0 28px"
+        ><div v-html="notice.content"></div>
+          <v-btn 
+            color="indigo"
+            v-if="loginUserId === notice.userid"
+            router-link
+            dark
+            :to="`/notice/modify/${notice.articleno}`"
+            style="float: right; margin: 16px 0;"
+            >수정 / 삭제
+          </v-btn>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -51,7 +56,6 @@ export default {
       .get('/article/list')
       .then(({ data }) => {
         this.notices = data;
-        console.log(data);
       })
       .catch(() => {
         alert('에러가 발생했습니다.');
@@ -67,24 +71,29 @@ export default {
 
 <style scoped>
 .noticelist {
-  background-color: #7986CB;
-  margin-top: 15px;
+  background-color: white;
+  padding: 60px 20px 20px 20px;
+  margin: 200px;
+  text-align: left;
+  font-family: 'Roboto';
 }
 h2 {
-  margin-bottom: 50px;
-  color: white;
-}
-#btn {
-  margin-left: 1130px;
-  margin-bottom: 10px;
-  border: 1px solid white;
-  color: white;
-}
-#btn2 {
-  border: 1px solid #d1c4e9;
+  margin-bottom: 20px;
   color: black;
+  font-weight: 800;
+  text-align: left;
 }
 span{
   width: 33%;
+}
+.subtitle{
+  text-align: left;
+  font-size: 20px;
+  color: black;
+  font-weight: lighter;
+}
+.qna-text{
+  color: white;
+  font-weight: 700;
 }
 </style>
