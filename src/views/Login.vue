@@ -1,15 +1,15 @@
 <template>
-  <div>
-    <login-form></login-form>
-    <div class="alert-danger" v-if="errorState">
+  <v-app style="background-color: #1A237E;">
       <v-alert
       elevation="12"
       type="error"
+      v-if="errorState" 
+      style="margin: auto; margin-top: 36px;"
       >
       {{errorState}}
       </v-alert>
-    </div>
-  </div>
+    <login-form></login-form>
+  </v-app>
 </template>
 
 <script>
