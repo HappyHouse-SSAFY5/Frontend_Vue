@@ -1,7 +1,5 @@
 <template>
-  <b-container class="bv-example-row">
-    <Main />
-  </b-container>
+  <Main />
 </template>
 <script>
 // @ is an alias to /src
