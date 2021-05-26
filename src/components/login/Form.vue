@@ -3,19 +3,24 @@
     <v-form v-model="valid" style="margin: auto;">
       <div class="login">
         <v-container>
-          <v-row>
+          <v-row class="loginBtn" style="text-align: left;">
+            <v-col cols="12">
+              <h3> 로그인 </h3> <h5> Login</h5>
+            </v-col>
+          </v-row>
+          <v-row class="loginBtn">
             <v-col cols="12">
               <v-col></v-col> <v-col></v-col>
               <v-text-field v-model="id" :rules="nameRules" :counter="50" required>
                 <template v-slot:label>
-                  <label style="color: white;">ID</label>
+                  <label style="color: black;">ID</label>
                 </template>
               </v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field type="password" v-model="pw" :rules="pwRules" :counter="50" required>
                 <template v-slot:label>
-                  <label style="color: white;">Password</label>
+                  <label style="color: black;">Password</label>
                 </template></v-text-field
               >
             </v-col>
@@ -87,8 +92,5 @@ export default {
 }
 .loginBtn {
   background-color: white;
-}
-v-text-field::label {
-  color: white;
 }
 </style>
