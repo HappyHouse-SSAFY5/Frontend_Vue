@@ -18,11 +18,9 @@
               :disabled="disabled == 1"
               required
             ></v-text-field>
-            <div>
               <button class="col-sm-3" id="btn" align="center" @click="validate">
                 FIND
               </button>
-            </div>
           </div>
         </div>
         <div class="card answer col-md-6">
@@ -88,6 +86,7 @@ export default {
 <style scoped>
 .findinfo {
   margin-top: 100px;
+
 }
 .card {
   border: white;
@@ -97,5 +96,8 @@ export default {
 }
 #btn {
   border: solid 1px #01579b;
+}
+.button {
+  margin: 0 auto;
 }
 </style>
