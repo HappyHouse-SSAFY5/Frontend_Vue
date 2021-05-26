@@ -9,17 +9,17 @@
               <h2 align="center">FIND PASSWORD</h2>
               <v-text-field v-model="id" :disabled="disabled == 1" required>
                 <template v-slot:label>
-                  <label style="color: white; margin-left: 3px;">ID</label>
+                  <label style="margin-left: 3px;">ID</label>
                 </template></v-text-field
               >
               <v-text-field v-model="name" :disabled="disabled == 1" required>
                 <template v-slot:label>
-                  <label style="color: white; margin-left: 3px;">Name</label>
+                  <label style="margin-left: 3px;">Name</label>
                 </template></v-text-field
               >
               <v-text-field v-model="email" :disabled="disabled == 1" required>
                 <template v-slot:label>
-                  <label style="color: white; margin-left: 3px;">Email</label>
+                  <label style="margin-left: 3px;">Email</label>
                 </template></v-text-field
               >
               <div class="btnFind">
@@ -104,9 +104,8 @@ export default {
 
 <style scoped>
 .findpw {
-  border: solid 8px white;
-  color: white;
-  margin-left: 10px;
+  background-color: white;
+  margin-left: 20px;
 }
 .answer {
   color: white;
