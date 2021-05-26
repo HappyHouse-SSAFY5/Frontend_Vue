@@ -1,21 +1,13 @@
 <template>
-  <b-container class="bv-example-row">
-    <b-row>
-      <b-col>
-      </b-col>
-    </b-row>
+  <v-app style="background-color: #1A237E">
     <router-view />
-  </b-container>
+  </v-app>
 </template>
 
 <script>
 
 export default {
   name: 'Qna',
-  data() {
-    return {};
-  },
-  methods: {},
 };
 </script>
 

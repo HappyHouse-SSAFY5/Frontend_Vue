@@ -1,6 +1,7 @@
 <template>
   <div class="regist">
     <h2>Regist Q&amp;A Form</h2>
+    <div class="subtitle">  궁금한 것이 있나요? 대답할 준비 완료 <v-icon color="white">mdi-account-voice</v-icon> </div>
     <div class="regist_form">
       <div class="form-group" align="left">
         <label for="title"><h6>TITLE</h6></label>
@@ -19,7 +20,7 @@
         ></textarea
         ><br />
       </div>
-      <button class="btn btn-default" @click="addQna">SUBMIT</button>
+      <v-btn color="indigo darken-3" dark @click="addQna">SUBMIT</v-btn>
     </div>
   </div>
 </template>
@@ -43,15 +44,13 @@ export default {
   },
   methods: {
     addQna() {
-      console.log(this.loginUserId);
       http
         .post('/qna/registration', {
           title: this.title,
           userid: this.loginUserId,
           content: this.content,
         })
-        .then(({ data }) => {
-          console.log(data);
+        .then(() => {
           alert('등록이 완료되었습니다.');
           this.moveList();
         })
@@ -89,16 +88,25 @@ button,
   margin-right: 2px;
 }
 .regist {
-  padding: 10px;
-  background-color: #B39DDB;
+  background-color: #1A237E;
+  padding: 60px 20px 20px 20px;
+  margin: 200px;
+  text-align: left;
+  font-family: 'Roboto';
 }
 .regist_form {
-  border-radius: 5px;
   padding: 20px;
   background-color: white;
 }
 h2 {
   color: white;
   margin-bottom: 20px;
+}
+
+.subtitle{
+  text-align: right;
+  font-size: 20px;
+  color: white;
+  font-weight: lighter;
 }
 </style>
