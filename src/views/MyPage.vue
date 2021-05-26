@@ -1,5 +1,7 @@
 <template>
   <v-app id="inspire">
+    <v-container style="padding: 40px 0px;">
+    </v-container>
     <v-container>
       <v-row>
           <v-col>
@@ -26,5 +28,8 @@ export default {
 </script>
 
 <style>
-
+.page-title{
+  font-weight: 900;
+  text-align: left;
+}
 </style>

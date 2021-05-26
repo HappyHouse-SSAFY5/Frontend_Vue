@@ -1,10 +1,10 @@
 <template>
     <v-form
       ref="form"
-      v-model="valid"
       lazy-validation
     >
-      <h2 align="center">My Page</h2>
+      <h4> <v-icon large color="indigo">mdi-human-greeting</v-icon>내 정보 확인하기</h4>
+      <v-subheader style="display: inline-flex;">저희에게 알려주신 {{username}}님의 정보입니다. 정확한가요? <v-icon>mdi-emoticon-cool-outline</v-icon> </v-subheader>
       <v-text-field
         label="ID"
         id="id"
@@ -13,7 +13,6 @@
         ref="id" 
         readonly
       />
-    <div class="form-group" align="left">
       <v-text-field
         label="Name"
         id="name"
@@ -22,8 +21,6 @@
         ref="name"
         readonly
       />
-    </div>
-    <div class="form-group" align="left">
       <v-text-field
         label="Password"
         id="password"
@@ -32,8 +29,6 @@
         ref="password"
         placeholder=""
       />
-    </div>
-    <div class="form-group" align="left">
       <v-text-field
         label="Confirm Password"
         id="passwordchk"
@@ -42,9 +37,6 @@
         ref="passwordchk"
         placeholder=""
       />
-    </div>
-    <div class="form-group" align="left">
-      <div id="email" class="custom-control-inline">
         <v-text-field
           label="Email"
           id="email"
@@ -53,25 +45,19 @@
           ref="email"
           :rules="emailRules"
         />
-      </div>
-    </div>
-    <div class="form-group" align="left">
-      <label for="">주소</label><br />
       <v-text-field
-        type="text"
+        label="Address"
         id="address"
         name="address"
         v-model="address"
         ref="address"
         :rules="addressRules"
       />
-    </div>
-
-    <v-btn class="mr-4" id="btn" color="success" type="submit" @click="validate">
-      수정 / 확인
+    <v-btn class="mr-4" color="blue darken-4" @click="validate" dark>
+      내 정보 수정 하기
     </v-btn>
-    <v-btn class="mr-4" id="btn" color="error" type="submit" @click="deleteUser">
-      회원 탈퇴
+    <v-btn class="mr-4" color="light-blue darken-4" @click="deleteUser" dark>
+      탈퇴하기
     </v-btn>
   </v-form>
 </template>
@@ -85,6 +71,7 @@ export default {
   computed: {
     ...mapGetters({
       loginUserId: 'getUserid',
+      username: 'getUsername',
     }),
   },
   data: () => ({
@@ -159,6 +146,8 @@ export default {
         });
     },
     deleteUser() {
+      
+      if(!confirm("정말 저희를 떠나실건가요?")) return;
       http
         .delete(`/user/delete/${this.id}`, {
           userid: this.id,
@@ -172,6 +161,7 @@ export default {
     async clicklogout() {
       try {
         await this.logout();
+        this.moveHome();
       } catch (error) {
         console.log(error);
       }
@@ -179,10 +169,14 @@ export default {
     moveList() {
       this.$router.push('/vuetest'); // 홈으로 바꿔야함
     },
+    moveHome() {
+      this.$router.push({
+        name: 'Home',
+      });
+    },
   },
 };
 </script>
 
 <style scoped>
-
 </style>
