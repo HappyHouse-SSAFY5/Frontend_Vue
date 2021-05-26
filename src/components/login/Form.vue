@@ -1,36 +1,45 @@
 <template>
-  <v-app>
+  <v-app style="background-color: #1A237E; margin-top: 8px;">
     <v-form v-model="valid" style="margin: auto;">
-      <v-container>
-        <v-row>
-          <v-col cols="12">
-            <v-text-field
-              v-model="id"
-              :rules="nameRules"
-              :counter="50"
-              label="아이디"
-              required
-            ></v-text-field>
-          </v-col>
-
-          <v-col cols="12">
-            <v-text-field
-              type="password"
-              v-model="pw"
-              :rules="pwRules"
-              :counter="50"
-              label="비밀번호"
-              required
-            ></v-text-field>
-          </v-col>
-        </v-row>
-      </v-container>
-      <v-btn :disabled="!valid" color="success" class="mr-5" @click="submit">
-        Login
-      </v-btn>
-     <v-btn class="mr-3" @click="findInfo">
-        Find Password
-      </v-btn>
+      <div class="login">
+        <v-container>
+          <v-row>
+            <v-col cols="12">
+              <v-col></v-col> <v-col></v-col>
+              <v-text-field v-model="id" :rules="nameRules" :counter="50" required>
+                <template v-slot:label>
+                  <label style="color: white;">ID</label>
+                </template>
+              </v-text-field>
+            </v-col>
+            <v-col cols="12">
+              <v-text-field type="password" v-model="pw" :rules="pwRules" :counter="50" required>
+                <template v-slot:label>
+                  <label style="color: white;">Password</label>
+                </template></v-text-field
+              >
+            </v-col>
+            <v-col></v-col>
+            <v-col></v-col>
+            <v-col></v-col>
+            <v-col></v-col>
+          </v-row>
+        </v-container>
+      </div>
+      <div class="loginBtn">
+        <v-col></v-col>
+        <v-btn class="mr-5" color="white" :disabled="!valid" @click="submit">
+          Login
+        </v-btn>
+        <v-btn class="mr-3" color="white" small @click="findInfo">
+          Find Password
+        </v-btn>
+        <v-col></v-col>
+      </div>
+      <v-col></v-col>
+      <v-col></v-col>
+      <v-col></v-col>
+      <v-col></v-col>
     </v-form>
   </v-app>
 </template>
@@ -72,4 +81,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.login {
+  border: 10px solid white;
+}
+.loginBtn {
+  background-color: white;
+}
+v-text-field::label {
+  color: white;
+}
+</style>
