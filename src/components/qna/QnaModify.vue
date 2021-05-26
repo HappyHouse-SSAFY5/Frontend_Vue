@@ -1,6 +1,7 @@
 <template>
   <div class="modify">
     <h2>Modify Q&amp;A Form</h2>
+    <div class="subtitle">궁금한 것이 있나요? 대답할 준비 완료 <v-icon color="white">mdi-account-voice</v-icon></div>
     <div class="modify_form">
       <div class="form-group" align="left">
         <label for="title"><h6>TITLE</h6></label>
@@ -19,8 +20,12 @@
         ></textarea
         ><br />
       </div>
-      <button class="btn btn-default" @click="modifyQna">SUBMIT</button>
-      <button class="btn btn-default" @click="deleteQna">DELETE</button>
+      <v-btn color="indigo darken-3" dark @click="modifyQna">
+        SUBMIT
+      </v-btn>
+      <v-btn color="primary" dark @click="deleteQna">
+        DELETE
+      </v-btn>
     </div>
   </div>
 </template>
@@ -40,7 +45,6 @@ export default {
     http
       .get(`/qna/detail/${this.$route.params.id}`)
       .then(({ data }) => {
-        console.log(data);
         this.id = data.id;
         this.userid = data.userid;
         this.title = data.title;
@@ -49,8 +53,6 @@ export default {
   },
   methods: {
     modifyQna() {
-      console.log('updateQna call');
-
       http
         .put(`/qna/modify`, {
           id: this.id,
@@ -58,8 +60,7 @@ export default {
           title: this.title,
           content: this.content,
         })
-        .then(({ data }) => {
-          console.log(data);
+        .then(( ) => {
           alert('수정이 완료되었습니다.');
           this.moveList();
         })
@@ -107,16 +108,26 @@ button,
   margin-right: 2px;
 }
 .modify {
-  padding: 10px;
-  background-color: #B39DDB;
+  padding: 60px 20px 20px 20px;
+  background-color: #1A237E;
+  text-align: left;
+  margin: 200px;
+  font-family: 'Roboto';
 }
 .modify_form {
-  border-radius: 5px;
   padding: 20px;
   background-color: white;
 }
 h2 {
   color: white;
   margin-bottom: 20px;
+  font-weight: 800;
+  text-align: left;
+}
+.subtitle{
+  text-align: right;
+  font-size: 20px;
+  color: white;
+  font-weight: lighter;
 }
 </style>
