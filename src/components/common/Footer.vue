@@ -1,23 +1,12 @@
 <template>
-  <div class="row">
-    <div class="col-md-12">
-      <ul style="list-style: none;">
-        <li><a class="nav-link text-secondary" href="#" style="font-size: x-large;">Find us</a></li>
-        <li>
-          <a class="nav-link text-secondary" href="#">(SSAFY) 서울시 강남구 테헤란로 멀티스퀘어</a>
-        </li>
-        <li><a class="nav-link text-secondary" href="#">1544-9001</a></li>
-        <li><a class="nav-link text-secondary" href="#">admin@ssafy.com</a></li>
-        <li><label class="nav-link text-secondary">&copy; SSAFY Corp.</label></li>
-      </ul>
-    </div>
-    <div
-      class="container-fluid mt-2 pt-3 pb-3 text-center"
-      style="background-color: #dcdcdc; color: gray;"
-    >
-      Copyright by SSAFY All rights reserved.
-    </div>
-  </div>
+  <section class="footer">
+		<div class="footer-legal">
+      <hr>
+			<div class="footer-legal-copyright">Copyright © 2021 Yechaeneung. 모든 권리 보유.
+        <a class="footer-legal-link" href="/" data-analytics-title="site map">사이트 맵</a>
+			</div>
+		</div>
+	</section>
 </template>
 
 <script>
@@ -25,4 +14,8 @@ export default {};
 </script>
 
 <style>
+.footer-legal-link {
+  color: gray;
+  margin-left: 1%;
+}
 </style>
