@@ -1,94 +1,79 @@
 <template>
-  <v-app>
-    <div class="mypageform container-fluid">
-      <div class="row">
-        <div class="card col-md-6">
-          <div class="form-group" align="left">
-            <h2 align="center">My Page</h2>
-            <label for="id">ID</label>
-            <input
-              type="text"
-              class="form-control"
-              id="id"
-              name="id"
-              v-model="id"
-              ref="id"
-              readonly
-            />
-          </div>
-          <div class="form-group" align="left">
-            <label for="name">Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              name="name"
-              v-model="name"
-              ref="name"
-              readonly
-            />
-          </div>
-          <div class="form-group" align="left">
-            <label for="password">비밀번호</label>
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              name="password"
-              v-model="password"
-              ref="password"
-              placeholder=""
-            />
-          </div>
-          <div class="form-group" align="left">
-            <label for="passwordchk">비밀번호 재입력</label>
-            <input
-              type="password"
-              class="form-control"
-              id="passwordchk"
-              name="passwordchk"
-              v-model="passwordchk"
-              ref="passwordchk"
-              placeholder=""
-            />
-          </div>
-          <div class="form-group" align="left">
-            <label for="email">이메일</label><br />
-            <div id="email" class="custom-control-inline">
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                v-model="email"
-                ref="email"
-              />
-            </div>
-          </div>
-          <div class="form-group" align="left">
-            <label for="">주소</label><br />
-            <input
-              type="text"
-              class="form-control"
-              id="address"
-              name="address"
-              v-model="address"
-              ref="address"
-            />
-          </div>
-          <div>
-            <button class="col-sm-3" id="btn" align="left" type="submit" @click="validate">
-              수정 / 확인
-            </button>
-            <button class="col-sm-3" id="btn" align="right" type="submit" @click="deleteUser">
-              회원 탈퇴
-            </button>
-          </div>
-        </div>
-        <div class="card col-md-6">찜하기 목록</div>
+    <v-form
+      ref="form"
+      v-model="valid"
+      lazy-validation
+    >
+      <h2 align="center">My Page</h2>
+      <v-text-field
+        label="ID"
+        id="id"
+        name="id"
+        v-model="id"
+        ref="id" 
+        readonly
+      />
+    <div class="form-group" align="left">
+      <v-text-field
+        label="Name"
+        id="name"
+        name="name"
+        v-model="name"
+        ref="name"
+        readonly
+      />
+    </div>
+    <div class="form-group" align="left">
+      <v-text-field
+        label="Password"
+        id="password"
+        name="password"
+        v-model="password"
+        ref="password"
+        placeholder=""
+      />
+    </div>
+    <div class="form-group" align="left">
+      <v-text-field
+        label="Confirm Password"
+        id="passwordchk"
+        name="passwordchk"
+        v-model="passwordchk"
+        ref="passwordchk"
+        placeholder=""
+      />
+    </div>
+    <div class="form-group" align="left">
+      <div id="email" class="custom-control-inline">
+        <v-text-field
+          label="Email"
+          id="email"
+          name="email"
+          v-model="email"
+          ref="email"
+          :rules="emailRules"
+        />
       </div>
     </div>
-  </v-app>
+    <div class="form-group" align="left">
+      <label for="">주소</label><br />
+      <v-text-field
+        type="text"
+        id="address"
+        name="address"
+        v-model="address"
+        ref="address"
+        :rules="addressRules"
+      />
+    </div>
+
+    <v-btn class="mr-4" id="btn" color="success" type="submit" @click="validate">
+      수정 / 확인
+    </v-btn>
+    <v-btn class="mr-4" id="btn" color="error" type="submit" @click="deleteUser">
+      회원 탈퇴
+    </v-btn>
+  </v-form>
 </template>
 
 <script>
@@ -101,10 +86,6 @@ export default {
     ...mapGetters({
       loginUserId: 'getUserid',
     }),
-    passwordConfirmationRules() {
-      return () =>
-        this.password === this.passwordchk || 'Password Check must be the same as the password';
-    },
   },
   data: () => ({
     id: '',
@@ -112,11 +93,17 @@ export default {
     password: '',
     passwordchk: '',
     email: '',
+    emailRules:[
+      v => !!v || 'email 입력은 필수입니다.',
+      v => /.+@.+\..+/.test(v) || '유효하지 않은 email 형식입니다.',
+    ],
     address: '',
+    addressRules:[
+      v => !!v || '주소 입력은 필수입니다.',
+    ],
   }),
   created() {
     http.get(`/user/mypage/${this.loginUserId}`).then(({ data }) => {
-      console.log(data);
       this.id = data.userid;
       this.name = data.username;
       this.password = data.password;
@@ -126,6 +113,10 @@ export default {
   },
   methods: {
     ...mapActions(['logout']),
+    passwordConfirmationRules(v) {
+      if(v != this.password) return true;
+      else return 'Password Check must be the same as the password';
+    },
     validate() {
       let err = true;
       let msg = '';
@@ -151,11 +142,6 @@ export default {
       else this.modifyUser();
     },
     modifyUser() {
-      console.log(this.id);
-      console.log(this.name);
-      console.log(this.password);
-      console.log(this.email);
-      console.log(this.address);
       http
         .put('/user/update', {
           userid: this.id,
@@ -164,8 +150,7 @@ export default {
           email: this.email,
           address: this.address,
         })
-        .then(({ data }) => {
-          console.log(data);
+        .then(() => {
           alert('회원정보 수정이 완료되었습니다.');
           this.moveList();
         })
@@ -199,19 +184,5 @@ export default {
 </script>
 
 <style scoped>
-.mypageform {
-  margin-top: 20px;
-  color: white;
-}
-input {
-  background-color: #9fa8da;
-}
-.card {
-  background-color: #9fa8da;
-  border: 3px solid white;
-}
-#btn {
-  background-color: #9fa8da;
-  border: solid 2px white;
-}
+
 </style>
