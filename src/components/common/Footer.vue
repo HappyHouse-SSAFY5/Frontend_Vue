@@ -2,8 +2,8 @@
   <section class="footer">
 		<div class="footer-legal">
       <hr>
-			<div class="footer-legal-copyright">Copyright © 2021 Yechaeneung. 모든 권리 보유.
-        <a class="footer-legal-link" href="/" data-analytics-title="site map">사이트 맵</a>
+			<div class="footer-legal-copyright">Copyright © 2021 Yechaeneung. 모든 권리 보유.<br />
+			Yeseul X Chaeha
 			</div>
 		</div>
 	</section>
