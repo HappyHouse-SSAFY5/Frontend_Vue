@@ -1,7 +1,7 @@
 <template>
-  <v-app>
+    <div>
       <find-pw />
-  </v-app>
+    </div>
 </template>
 
 <script>
@@ -9,7 +9,9 @@ import FindPw from '@/components/findinfo/FindPw.vue';
 
 export default {
   name: 'FindInfo',
-  components: { FindPw },
+  components: {
+    FindPw,
+  },
 };
 </script>
 
