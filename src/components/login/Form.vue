@@ -28,10 +28,10 @@
       </div>
       <div class="loginBtn">
         <v-col></v-col>
-        <v-btn class="mr-5" color="white" :disabled="!valid" @click="submit">
+        <v-btn class="mr-5" style="background-color:#1A237E; color:white;" :disabled="!valid" @click="submit">
           Login
         </v-btn>
-        <v-btn class="mr-3" color="white" small @click="findInfo">
+        <v-btn class="mr-3" style="background-color:#5C6BC0; color:white;" @click="findInfo">
           Find Password
         </v-btn>
         <v-col></v-col>
