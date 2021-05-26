@@ -1,23 +1,26 @@
 <template>
   <v-app style="background-color: #1A237E; margin-top: 8px;">
     <v-form ref="form" v-model="valid" lazy-validation style="width:500px; margin: auto;">
+      <div class="signup" style="text-align: left;">
+        <h3>회원가입</h3> <h5>Sign up</h5>
+      </div>
       <div class="signup">
         <v-text-field v-model="id" :counter="10" :rules="idRules" required>
           <template v-slot:label>
-            <label style="color: white; margin-left: 3px; ">ID</label>
+            <label style="color: black; margin-left: 3px; ">ID</label>
           </template>
         </v-text-field>
         <v-btn
           text-color="white"
-          style="background-color:#1A237E; color:white; float: right; margin-right: 3px;"
+          style="background-color:#1A237E; color:white; float: right; margin-right: 3px; font-weight: 800;"
           @click="checkDuplicateId()"
         >
-          🚩아이디 중복 확인</v-btn
+          <v-icon>mdi-check-all</v-icon>  아이디 중복 확인</v-btn
         >
         <br /><br />
         <v-text-field v-model="name" :counter="20" :rules="nameRules" label="Name" required>
           <template v-slot:label>
-            <label style="color: white; margin-left: 3px;">Name</label>
+            <label style="color: black; margin-left: 3px;">Name</label>
           </template></v-text-field
         >
         <v-text-field
@@ -27,8 +30,8 @@
           :rules="passwordRules"
           required
           ><template v-slot:label>
-            <label style="color: white; margin-left: 3px;"
-              >Password는 8~15자리로 입력해주세요!
+            <label style="color: black; margin-left: 3px;"
+              >Password
             </label>
           </template></v-text-field
         >
@@ -41,22 +44,22 @@
           required
         >
           <template v-slot:label>
-            <label style="color: white; margin-left: 3px;"
-              >Password Check : 위와 동일하게 입력해주세요!</label
+            <label style="color: black; margin-left: 3px;"
+              >Password Check</label
             >
           </template></v-text-field
         >
         <v-text-field v-model="email" :rules="emailRules" label="E-mail" required
           ><template v-slot:label>
-            <label style="color: white; margin-left: 3px;">Email</label>
+            <label style="color: black; margin-left: 3px;">Email</label>
           </template></v-text-field
         >
         <v-text-field v-model="address" :rules="addressRules" label="Address" required
           ><template v-slot:label>
-            <label style="color: white; margin-left: 3px;">Address</label>
+            <label style="color: black; margin-left: 3px;">Address</label>
           </template></v-text-field
         >
-        <div class="signupBtn">
+        <div class="signup">
           <v-col></v-col>
           <v-col></v-col>
           <v-btn :disabled="!valid" id="submit" style="background-color:#1A237E; color:white;" class="mr-4" @click="validate">
@@ -180,10 +183,7 @@ export default {
 
 <style scoped>
 .signup {
-  border: 11px solid white;
-}
-.signupBtn {
   background-color: white;
-  
+  padding: 16px;
 }
 </style>
