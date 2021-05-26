@@ -3,6 +3,7 @@
     <v-row class="apt-search">
       <v-col cols="6" >
         <div class="border-box">
+          <router-link to="/apt">
           <v-col></v-col>
           <v-col></v-col>
           <v-col></v-col>
@@ -13,6 +14,7 @@
           <v-col style="background-color:white;"></v-col>
           <v-col style="background-color:white;"></v-col>
           <v-col style="background-color:white;"></v-col>
+          </router-link>
         </div>
       </v-col>
       <v-col cols="6" >
@@ -38,6 +40,7 @@
     <v-row class="notice">
       <v-col cols="12">
         <div class="border-box">
+          <router-link to="/notice">
           <v-col style="background-color:white; text-align: left;" class="roboto-bold">공지사항을 확인하세요</v-col>
           <v-col style="background-color:white;"></v-col>
           <v-col style="background-color:white;"></v-col>
@@ -47,12 +50,14 @@
           <v-col></v-col>
           <v-col></v-col>
           <v-col></v-col>
+          </router-link>
         </div>
       </v-col>
     </v-row>
     <v-row class="qna">
       <v-col cols="6">
         <div class="border-box">
+          <router-link to="/qna">
           <v-col style="background-color:white; text-align: left;" class="roboto-bold">궁금한 점이 있으신가요?</v-col>
           <v-col style="background-color:white;"></v-col>
           <v-col style="background-color:white;"></v-col>
@@ -62,10 +67,12 @@
           <v-col></v-col>
           <v-col></v-col>
           <v-col></v-col>
+          </router-link>
         </div>
       </v-col>
       <v-col cols="6">
         <div class="border-box">
+          <router-link to="/signup">
           <v-col></v-col>
           <v-col></v-col>
           <v-col></v-col>
@@ -76,6 +83,7 @@
           <v-col style="background-color:white;"></v-col>
           <v-col style="background-color:white;"></v-col>
           <v-col style="background-color:white;"></v-col>
+          </router-link>
         </div>
       </v-col>
     </v-row>
@@ -99,6 +107,11 @@ export default {
   border: 8px solid white;
   height: 300px;
 }
+
+.border-box > a{
+  text-decoration: none;
+}
+
 .roboto-bold{
   font-family: 'Roboto';
   font-weight: 800;

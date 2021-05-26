@@ -167,7 +167,7 @@ export default {
       }
     },
     moveList() {
-      this.$router.push('/vuetest'); // 홈으로 바꿔야함
+      this.$router.push('/'); // 홈으로 바꿔야함
     },
     moveHome() {
       this.$router.push({
