@@ -25,6 +25,7 @@
           style="display: flex; align-items: center;"
         >
           <v-btn
+            v-if="userid"
             class="mx-2"
             fab
             dark
