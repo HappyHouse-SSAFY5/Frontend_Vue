@@ -4,7 +4,7 @@
       <h2>Q&amp;A</h2>
       <p class="subtitle"> 무슨 일이 일어나고 있나요? <v-icon color="indigo darken-4">mdi-thought-bubble</v-icon></p>
     </v-col>
-    <v-col cols="2">
+    <v-col cols="2" v-if="loginUserId">
       <v-btn color="black" @click="moveForm" outlined>
         Q&A 쓰러가기
       </v-btn>
