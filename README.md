@@ -1,6 +1,6 @@
 # HappyHouse Frontend_Vue
 
-SSAFY 5기 서울 이예슬, 이채하의 HappyHouse 종합 프로젝트의 Backend Repository입니다.
+SSAFY 5기 서울 이예슬, 이채하의 HappyHouse 종합 프로젝트의 Frontend Repository입니다.
 
 This repository represents the HappyHouse client. You will find the UI and application in this repository.
 
